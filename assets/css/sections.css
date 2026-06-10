@@ -201,30 +201,39 @@
 .work-note b { color: var(--paper); font-weight: 600; }
 .work-gallery {
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 1.8vw, 1.75rem);
 }
-/* editorial figures: the ad fills the frame, the caption reads below it */
-.work-figure { margin: 0; display: flex; flex-direction: column; gap: 0.9rem; }
-.wf-5 { grid-column: span 5; }
-.wf-7 { grid-column: span 7; }
+/* specimen treatment: each ad sits matted on a dark surface at uniform scale,
+   so foreign brand colours read as portfolio content, not page design */
+.work-figure { margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
 .work-frame {
-  border-radius: 16px; overflow: hidden;
-  border: 1px solid var(--line); background: var(--ink-raised);
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(0.9rem, 1.5vw, 1.4rem);
   transition: border-color .35s, transform .45s var(--ease);
 }
 .work-figure:hover .work-frame { border-color: rgba(241,238,231,0.18); transform: translateY(-4px); }
-.work-frame img { display: block; width: 100%; height: auto; }
-.work-cap { display: flex; flex-direction: column; gap: 0.25rem; padding: 0 0.2rem; }
+.work-frame img {
+  display: block; max-width: 100%; max-height: 100%; width: auto; height: auto;
+  border-radius: 8px;
+  outline: 1px solid var(--line-soft); outline-offset: -1px;
+  filter: saturate(0.88) brightness(0.94);
+  transition: filter .35s;
+}
+.work-figure:hover .work-frame img { filter: none; }
+.work-cap { display: flex; flex-direction: column; gap: 0.2rem; padding: 0 0.2rem; }
 .wc-kicker {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--muted);
 }
-.wc-sub { font-size: 13.5px; color: var(--faint); line-height: 1.5; }
+.wc-sub { font-size: 13px; color: var(--faint); line-height: 1.5; }
 
 @media (max-width: 860px) {
   .work-head { grid-template-columns: 1fr; gap: 1.5rem; }
-  .work-gallery { grid-template-columns: 1fr; }
-  .wf-5, .wf-7 { grid-column: 1 / -1; }
+  .work-gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------------- PROCESS ---------------- */
