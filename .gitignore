@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Local tooling and agent config
+.claude/
+
+# Pre-production source archive (kept local, not part of the deployed site)
+CravioLabs (1)/
+
+# Editor
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
+
+# Dependencies and build output (future-proofing)
+node_modules/
+dist/
+
+# Vercel local project linkage
+.vercel/
