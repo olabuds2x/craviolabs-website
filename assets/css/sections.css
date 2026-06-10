@@ -201,61 +201,30 @@
 .work-note b { color: var(--paper); font-weight: 600; }
 .work-gallery {
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem;
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1.5rem, 2.5vw, 2.5rem);
 }
-.work-tile {
-  position: relative; border-radius: 16px; overflow: hidden;
+/* editorial figures: the ad fills the frame, the caption reads below it */
+.work-figure { margin: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.wf-5 { grid-column: span 5; }
+.wf-7 { grid-column: span 7; }
+.work-frame {
+  border-radius: 16px; overflow: hidden;
   border: 1px solid var(--line); background: var(--ink-raised);
   transition: border-color .35s, transform .45s var(--ease);
-  display: flex;
 }
-.work-tile:hover { border-color: var(--line); transform: translateY(-4px); }
-/* format spans */
-.w-static { grid-column: span 5; aspect-ratio: 4/5; }
-.w-motion { grid-column: span 7; aspect-ratio: 16/10; }
-.w-video  { grid-column: span 7; aspect-ratio: 16/9; }
-.w-square { grid-column: span 5; aspect-ratio: 1/1; }
-
-/* photographic plates inside work tiles (HTML typography overlays on top) */
-.wt-img {
-  position: absolute; inset: 0; z-index: 1;
-  width: 100%; height: 100%; object-fit: cover;
+.work-figure:hover .work-frame { border-color: rgba(241,238,231,0.18); transform: translateY(-4px); }
+.work-frame img { display: block; width: 100%; height: auto; }
+.work-cap { display: flex; flex-direction: column; gap: 0.25rem; padding: 0 0.2rem; }
+.wc-kicker {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
 }
-/* scrim keeps overlay copy legible without flattening the image */
-.work-tile::after {
-  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(200deg, transparent 38%, rgba(10,10,11,0.78) 86%);
-}
-.work-tile.t-accent::after {
-  background: linear-gradient(200deg, transparent 45%, rgba(201,237,106,0.55) 88%);
-}
-
-/* designed concept-ad content inside work tiles */
-.wt-fmt { position: absolute; top: 1rem; left: 1.1rem; z-index: 4; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: rgba(241,238,231,0.5); }
-.work-tile.t-accent .wt-fmt { color: rgba(10,10,11,0.5); }
-.wt { position: absolute; inset: 0; z-index: 3; padding: clamp(1.3rem, 2.2vw, 2rem); display: flex; flex-direction: column; justify-content: flex-end; gap: 0.7rem; }
-.wt-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
-.wt-hook { font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 2.8vw, 42px); line-height: 0.98; letter-spacing: -0.025em; }
-.wt-sub { font-size: 13px; line-height: 1.4; }
-
-.work-tile.t-dark   { background: linear-gradient(158deg, #1d1d22, #0f0f11 80%); }
-.work-tile.t-glow   { background: radial-gradient(ellipse 110% 80% at 80% 110%, rgba(201,237,106,0.22), transparent 55%), linear-gradient(158deg, #17190f, #0d0e0b 75%); }
-.work-tile.t-accent { background: linear-gradient(152deg, var(--accent) 0%, var(--accent-deep) 100%); }
-.work-tile.t-outline{ background: #0e0e10; }
-
-.t-dark .wt-kicker, .t-glow .wt-kicker, .t-outline .wt-kicker { color: var(--accent); }
-.t-dark .wt-hook, .t-glow .wt-hook, .t-outline .wt-hook { color: var(--paper); }
-.t-dark .wt-sub, .t-glow .wt-sub, .t-outline .wt-sub { color: var(--muted); }
-.t-accent .wt-kicker { color: rgba(10,10,11,0.6); }
-.t-accent .wt-hook { color: var(--ink); }
-.t-accent .wt-sub { color: rgba(10,10,11,0.7); }
-.work-tile .reel-play { width: 48px; height: 48px; }
-.work-tile .reel-play svg { width: 16px; height: 16px; }
+.wc-sub { font-size: 13.5px; color: var(--faint); line-height: 1.5; }
 
 @media (max-width: 860px) {
   .work-head { grid-template-columns: 1fr; gap: 1.5rem; }
   .work-gallery { grid-template-columns: 1fr; }
-  .w-static, .w-motion, .w-video, .w-square { grid-column: 1 / -1; }
+  .wf-5, .wf-7 { grid-column: 1 / -1; }
 }
 
 /* ---------------- PROCESS ---------------- */
