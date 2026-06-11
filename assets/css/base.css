@@ -225,6 +225,21 @@ section { padding: clamp(5rem, 10vw, 9rem) var(--gutter); }
 }
 .btn-ghost:hover { color: var(--paper); border-color: var(--paper-dim); }
 
+.btn-text {
+  color: var(--paper-dim);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.btn-text svg { width: 14px; height: 14px; transition: transform .25s var(--ease); }
+.btn-text:hover { color: var(--accent); }
+.btn-text:hover svg { transform: translateX(3px); }
+
 /* ---------- nav ---------- */
 nav {
   position: fixed;

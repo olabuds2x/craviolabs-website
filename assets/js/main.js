@@ -65,6 +65,16 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', revealInView, { passive: true });
 
+  // conversion events (Vercel Web Analytics) — label each contact click by section
+  document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+    a.addEventListener('click', () => {
+      if (typeof window.va !== 'function') return;
+      const region = a.closest('section, header, nav, footer');
+      const location = region ? (region.id || region.tagName.toLowerCase()) : 'page';
+      window.va('event', { name: 'contact_click', data: { location } });
+    });
+  });
+
   // smooth anchor scroll with offset for fixed nav
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (ev) => {
