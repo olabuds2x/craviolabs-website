@@ -1,4 +1,4 @@
-// CRAVIO LABS — interactions
+// KALVANO — interactions
 (function () {
   // nav scroll state
   const nav = document.getElementById('nav');

@@ -1,5 +1,5 @@
 /* ============================================================
-   CRAVIO LABS — refined luxe system
+   KALVANO — refined luxe system
    Display: Schibsted Grotesk · Body: Hanken Grotesk · Accent: Newsreader (italic serif)
    ============================================================ */
 
@@ -258,6 +258,7 @@ nav.scrolled {
 }
 .brand b { font-weight: 700; }
 .brand .mk { color: var(--accent); font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+.brand-logo { display: block; height: 20px; width: auto; }
 
 .nav-links {
   display: flex;
@@ -299,6 +300,7 @@ footer {
   align-items: start;
 }
 .footer-brand .brand { font-size: 26px; margin-bottom: 1rem; }
+.footer-brand .brand-logo { height: 30px; }
 .footer-tagline {
   font-size: 15px;
   color: var(--muted);
