@@ -22,3 +22,18 @@ dist/
 # Vercel local project linkage
 .vercel/
 .vercel
+
+# Internal strategy documents. This repository is PUBLIC, so these must never
+# be committed: they contain pricing strategy, compliance analysis and
+# commercial positioning that is not for publication.
+Kalvano-Website-Revamp-Plan.md
+Kalvano-Portfolio-Build-Brief.md
+CravioLabs_GoToMarket_Phase3.docx
+context/
+.agents/
+
+# Third-party reference material, not ours to redistribute
+*.pdf
+
+# Local preview scaffolding, regenerated on demand
+preview-pending-work.html

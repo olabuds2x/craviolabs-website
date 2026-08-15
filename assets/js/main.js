@@ -1,4 +1,4 @@
-// KALVANO — interactions
+// KALVANO: interactions
 (function () {
   // nav scroll state
   const nav = document.getElementById('nav');
@@ -45,7 +45,7 @@
 
   // Opt into entrance animation ONLY if the document timeline is actually
   // advancing (it is frozen in some capture/preview contexts). When frozen or
-  // reduced-motion, .reveal stays visible by default — content is never stranded.
+  // reduced-motion, .reveal stays visible by default, so content is never stranded.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const t0 = document.timeline ? (document.timeline.currentTime || 0) : 0;
   setTimeout(function () {
@@ -58,14 +58,34 @@
     }
   }, 60);
 
-  // safety net — never leave content hidden
+  // safety net: never leave content hidden
   window.addEventListener('load', revealInView);
   setTimeout(revealInView, 500);
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', revealInView, { passive: true });
 
-  // conversion events (Vercel Web Analytics) — label each contact click by section
+  // ---- mobile disclosure menu ----
+  const navToggle = document.getElementById('nav-toggle');
+  if (navToggle) {
+    const setMenu = (open) => {
+      nav.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    navToggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    // a tap on any section link should close the panel behind it
+    nav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+    });
+    // the panel only exists below the breakpoint; never leave it stuck open on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860 && nav.classList.contains('open')) setMenu(false);
+    }, { passive: true });
+  }
+
+  // conversion events (Vercel Web Analytics): label each contact click by section
   document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
     a.addEventListener('click', () => {
       if (typeof window.va !== 'function') return;

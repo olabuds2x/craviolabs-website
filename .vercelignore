@@ -1,0 +1,12 @@
+# Files kept in the repository but not served by the site.
+
+# Staging fragment for the pending three-project Work section. It is a partial
+# document, not a page, and must not be reachable at kalvano.com/work-section.html.
+work-section.html
+
+# Documentation is never part of the deployed site.
+*.md
+
+# Internal directories, belt and braces alongside .gitignore.
+context
+.agents

@@ -1,5 +1,5 @@
 /* ============================================================
-   KALVANO — refined luxe system
+   KALVANO: refined luxe system
    Display: Schibsted Grotesk · Body: Hanken Grotesk · Accent: Newsreader (italic serif)
    ============================================================ */
 
@@ -260,6 +260,11 @@ nav.scrolled {
 .brand .mk { color: var(--accent); font-family: var(--font-serif); font-style: italic; font-weight: 400; }
 .brand-logo { display: block; height: 20px; width: auto; }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -285,6 +290,25 @@ nav.scrolled {
   transition: background .25s, transform .25s var(--ease) !important;
 }
 .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+/* mobile disclosure button, hidden until the section links collapse */
+.nav-toggle {
+  display: none;
+  width: 40px; height: 40px;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block; width: 16px; height: 1.5px;
+  background: var(--paper);
+  transition: transform .3s var(--ease);
+}
+#nav.open .nav-toggle span:first-child { transform: translateY(3.25px) rotate(45deg); }
+#nav.open .nav-toggle span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
 
 /* ---------- footer ---------- */
 footer {
@@ -356,8 +380,26 @@ footer {
 /* ---------- responsive base ---------- */
 @media (max-width: 860px) {
   body { font-size: 16px; }
-  /* keep the nav CTA on mobile; hide only the section links */
-  .nav-links { gap: 0; }
-  .nav-links li:not(:last-child) { display: none; }
+  /* the CTA stays in the bar; section links move into a disclosure panel */
+  .nav-right { gap: 0.7rem; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 0.25rem var(--gutter) 1.1rem;
+    background: rgba(10,10,11,0.97);
+    backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid var(--line);
+  }
+  #nav.open .nav-links { display: flex; }
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 16px;
+    color: var(--paper-dim);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-links li:last-child a { border-bottom: none; }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
