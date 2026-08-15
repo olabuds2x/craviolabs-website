@@ -480,6 +480,37 @@
   .wproj-foot { grid-template-columns: 1fr; gap: 1.6rem; }
 }
 
+/* Interim state while the project artwork is in production. Scoped to .wproj
+   so the earlier gallery below keeps showing its real images. Delete the
+   "is-awaiting-art" class on the section to switch the images on; the
+   filenames are already wired up. */
+.is-awaiting-art .wproj .work-frame { position: relative; }
+.is-awaiting-art .wproj .work-frame img { display: none; }
+.is-awaiting-art .wproj .work-frame::after {
+  content: attr(data-ratio);
+  position: absolute;
+  top: clamp(0.7rem, 1.5vw, 1.4rem); right: clamp(0.7rem, 1.5vw, 1.4rem);
+  bottom: clamp(0.7rem, 1.5vw, 1.4rem); left: clamp(0.7rem, 1.5vw, 1.4rem);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed var(--line); border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+  color: var(--faint);
+}
+
+/* Earlier concept work: the real trading-category images, kept so the page
+   still carries visual proof while the new artwork is produced. */
+.wearlier {
+  max-width: var(--maxw); margin: 0 auto;
+  padding-top: clamp(3.5rem, 6vw, 5.5rem);
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  border-top: 1px solid var(--line);
+}
+.wearlier-note {
+  margin: 1.3rem 0 clamp(2.2rem, 3.5vw, 3rem);
+  font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 68ch;
+}
+
 @media (max-width: 980px) {
   .wproj-head { grid-template-columns: 1fr; gap: 1.8rem; }
 }
