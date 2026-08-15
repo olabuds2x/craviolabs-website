@@ -480,13 +480,12 @@
   .wproj-foot { grid-template-columns: 1fr; gap: 1.6rem; }
 }
 
-/* Interim state while the project artwork is in production. Scoped to .wproj
-   so the earlier gallery below keeps showing its real images. Delete the
-   "is-awaiting-art" class on the section to switch the images on; the
-   filenames are already wired up. */
-.is-awaiting-art .wproj .work-frame { position: relative; }
-.is-awaiting-art .wproj .work-frame img { display: none; }
-.is-awaiting-art .wproj .work-frame::after {
+/* Interim state, applied per project so delivered artwork can go live while
+   the rest is still in production. Remove "is-awaiting-art" from a project's
+   <article> to switch its images on; the filenames are already wired up. */
+.wproj.is-awaiting-art .work-frame { position: relative; }
+.wproj.is-awaiting-art .work-frame img { display: none; }
+.wproj.is-awaiting-art .work-frame::after {
   content: attr(data-ratio);
   position: absolute;
   top: clamp(0.7rem, 1.5vw, 1.4rem); right: clamp(0.7rem, 1.5vw, 1.4rem);
