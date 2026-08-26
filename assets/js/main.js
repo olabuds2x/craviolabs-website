@@ -95,6 +95,23 @@
     });
   });
 
+  // ---- scroll-spy: highlight the nav link for whichever section is
+  // crossing the middle of the viewport, so a visitor mid-scroll on this
+  // long a page has a "you are here" cue beyond background-tint changes ----
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    const linkForId = {};
+    navLinks.forEach((a) => { linkForId[a.getAttribute('href').slice(1)] = a; });
+    const spySections = Object.keys(linkForId).map((id) => document.getElementById(id)).filter(Boolean);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const link = linkForId[entry.target.id];
+        if (link) link.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    spySections.forEach((el) => spy.observe(el));
+  }
+
   // smooth anchor scroll with offset for fixed nav
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (ev) => {

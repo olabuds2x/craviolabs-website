@@ -51,7 +51,7 @@
 }
 .hero-eyebrow .dotpulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-out infinite; }
 
-/* sized so "More creative ideas" holds one line: the explicit <br> sets the
+/* sized so "Paid-social ads," holds one line: the explicit <br> sets the
    break, so no max-width is needed and the offer spec stays above the fold */
 .hero-headline {
   font-family: var(--font-display); font-weight: 700;
@@ -61,17 +61,17 @@
 }
 .hero-headline .ser { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -0.02em; }
 
-/* Lower hero: the copy column and the offer card form two poles, so the wide
-   empty band to the right of the sub is filled with the commercial facts
-   rather than left as dead space. */
+/* Lower hero: the copy column and the offer card form two poles, roughly a
+   62/38 split. The lead paragraph fills its whole track rather than being
+   capped by its own max-width, so a 30-40 word sentence gets a wide column
+   instead of wrapping into a tall ladder of 2-4 word lines. */
 .hero-lower {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(270px, 25vw, 350px);
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
   gap: clamp(2rem, 4vw, 4rem);
   align-items: start;
   margin-top: clamp(2rem, 3.6vw, 3rem);
 }
-.hero-lead { max-width: 60ch; }
 .hero-sub {
   font-size: clamp(17px, 1.5vw, 21px);
   color: var(--paper-dim);
@@ -88,7 +88,7 @@
 }
 .ho-label {
   display: block; font-size: 10.5px; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint);
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
   margin-bottom: 0.9rem;
 }
 /* The deliverable leads and the price sits as a closing footnote. Setting the
@@ -112,7 +112,7 @@
 .ho-note {
   display: block; margin-top: 1.15rem; padding-top: 0.95rem;
   border-top: 1px solid var(--line);
-  font-size: 13px; color: var(--faint);
+  font-size: 13px; color: var(--muted);
 }
 .ho-note b { color: var(--paper-dim); font-weight: 600; }
 
@@ -178,9 +178,9 @@
 }
 .hero-strip-note {
   max-width: var(--maxw); margin: 0 auto; padding: 0.6rem var(--gutter) 0;
-  font-size: 12px; color: var(--faint); letter-spacing: 0.01em;
+  font-size: 12px; color: var(--muted); letter-spacing: 0.01em;
 }
-.hero-strip-note a { color: var(--faint); text-decoration: underline; text-underline-offset: 2px; }
+.hero-strip-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
 .hero-strip-note a:hover { color: var(--paper-dim); }
 
 @media (max-width: 860px) {
@@ -237,106 +237,67 @@
 }
 .avail-text b { color: var(--paper); font-weight: 700; }
 
+/* ---------------- SCOPE ---------------- */
+.scope { border-bottom: 1px solid var(--line); text-align: center; }
+.scope-inner { max-width: 760px; margin: 0 auto; }
+.scope-headline {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(30px, 4.4vw, 50px); line-height: 1.12; letter-spacing: -0.03em;
+  color: var(--paper);
+}
+.scope-headline .ser { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -0.01em; }
+.scope-body { margin-top: 1.4rem; font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 60ch; margin-left: auto; margin-right: auto; }
+
 /* ---------------- PROBLEM ---------------- */
-.problem { border-top: 1px solid var(--line); }
-.problem-grid {
-  max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.05fr;
-  gap: clamp(2.5rem, 6vw, 6rem); align-items: start;
-}
+.problem { border-top: 1px solid var(--line); text-align: center; }
+/* Centered, sequential flow instead of a two-column grid — see the comment
+   on the section in index.html for why. */
+.problem-inner { max-width: 720px; margin: 0 auto; }
 .problem-headline { font-size: clamp(28px, 3.6vw, 46px); margin: 1.3rem 0 1.5rem; }
-.problem-body { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 44ch; }
-.problem-close {
-  margin-top: 1.8rem; font-size: 15px; color: var(--paper-dim); line-height: 1.65;
-  border-left: 2px solid var(--accent); padding-left: 1.2rem; max-width: 42ch;
+.problem-body { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 56ch; margin: 0 auto; }
+.problem-body b { color: var(--paper); font-weight: 600; }
+.problem-inner .hero-actions { justify-content: center; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
+/* the three pain-point questions as one quiet, wrapped line rather than a
+   bulleted list competing for its own column's worth of visual weight */
+.problem-qs {
+  list-style: none; display: flex; flex-wrap: wrap; justify-content: center;
+  row-gap: 0.6rem; margin-top: clamp(2.6rem, 4.4vw, 3.6rem);
 }
-.problem-qs { list-style: none; border-top: 1px solid var(--line); }
 .problem-qs li {
-  position: relative;
-  padding: 1.15rem 0 1.15rem 2.1rem;
-  border-bottom: 1px solid var(--line);
   font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(16px, 1.5vw, 19px); letter-spacing: -0.015em; line-height: 1.35;
+  font-size: clamp(15px, 1.3vw, 17.5px); letter-spacing: -0.01em; line-height: 1.5;
   color: var(--paper-dim);
 }
-.problem-qs li::before {
-  content: ''; position: absolute; left: 0.4rem; top: 1.7rem;
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-}
-
-@media (max-width: 860px) {
-  .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-}
+.problem-qs li:not(:last-child)::after { content: '·'; margin: 0 0.9rem; color: var(--accent); }
 
 /* ---------------- SERVICES / METHOD ---------------- */
 .services { background: var(--ink-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .services-head { display: grid; grid-template-columns: 1fr 0.85fr; gap: 3rem; align-items: end; margin-bottom: clamp(3rem,5vw,4.5rem); max-width: var(--maxw); margin-left: auto; margin-right: auto; }
 .services-headline { font-size: clamp(30px, 4.2vw, 56px); margin-top: 1.4rem; }
 .services-intro { font-size: 16px; color: var(--muted); line-height: 1.65; padding-bottom: 0.4rem; }
+/* 2x2, not 4-across: at four columns each card's text track drops to
+   roughly 210px, which turns a 20-word paragraph into a tall ladder of
+   2-4 word lines. Two columns doubles that to a normal reading measure. */
 .services-grid {
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4,1fr);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px; background: var(--line); border: 1px solid var(--line);
   border-radius: 18px; overflow: hidden;
 }
-.service-card { background: var(--ink-raised); padding: clamp(1.7rem,2.4vw,2.2rem); position: relative; transition: background .35s var(--ease); }
+.service-card { background: var(--ink-raised); padding: clamp(1.8rem,2.6vw,2.6rem); position: relative; transition: background .35s var(--ease); }
 .service-card:hover { background: var(--ink-2); }
-.service-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 2rem; }
+.service-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 1.6rem; }
 .service-num { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); }
 .service-tag {
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--faint); padding: 0.35rem 0.7rem; border: 1px solid var(--line); border-radius: 100px;
+  color: var(--muted); padding: 0.35rem 0.7rem; border: 1px solid var(--line); border-radius: 100px;
 }
 .service-ic { width: 30px; height: 30px; stroke: var(--accent); fill: none; stroke-width: 1.4; margin-bottom: 1.4rem; }
 .service-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 0.7rem; letter-spacing: -0.015em; }
-.service-card p { font-size: 15px; color: var(--muted); line-height: 1.62; }
+.service-card p { font-size: 16px; color: var(--muted); line-height: 1.62; max-width: 46ch; }
 
-@media (max-width: 1080px) { .services-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 860px) { .services-head { grid-template-columns: 1fr; gap: 1.5rem; } }
 @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } }
-
-/* ---------------- ANATOMY OF A CONCEPT ---------------- */
-.anatomy { background: var(--ink-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.anat-head {
-  max-width: var(--maxw); margin: 0 auto clamp(3rem,5vw,4rem);
-  display: grid; grid-template-columns: 1fr 0.8fr; gap: 3rem; align-items: end;
-}
-.anat-headline { font-size: clamp(30px,4.2vw,56px); margin-top: 1.4rem; }
-.anat-note {
-  font-size: 15px; color: var(--muted); line-height: 1.65;
-  border-left: 2px solid var(--accent); padding-left: 1.2rem;
-}
-.anat-list {
-  max-width: var(--maxw); margin: 0 auto;
-  border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
-}
-.anat-row {
-  display: grid; grid-template-columns: 2.6rem 12rem 1fr;
-  gap: 1.5rem; align-items: start;
-  padding: clamp(1.4rem,2.2vw,1.9rem) clamp(1.7rem,2.5vw,2.3rem);
-  border-bottom: 1px solid var(--line-soft);
-  background: var(--ink-2);
-  transition: background .3s;
-}
-.anat-row:last-child { border-bottom: none; }
-.anat-row:hover { background: var(--ink-3); }
-.anat-num { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 0.25rem; }
-.anat-label { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--paper); padding-top: 0.1rem; }
-.anat-text { font-size: 15px; color: var(--muted); line-height: 1.62; }
-/* the hypothesis is the point of the section, so it is given the accent surface */
-.anat-row.is-key { background: linear-gradient(120deg, var(--accent-tint), var(--ink-2) 58%); }
-.anat-row.is-key:hover { background: linear-gradient(120deg, var(--accent-tint), var(--ink-3) 58%); }
-.anat-row.is-key .anat-text { color: var(--paper-dim); }
-
-@media (max-width: 980px) {
-  .anat-row { grid-template-columns: 2.2rem 1fr; gap: 0.35rem 1rem; }
-  .anat-num { grid-row: 1; }
-  .anat-label { grid-column: 2; grid-row: 1; }
-  .anat-text { grid-column: 2; grid-row: 2; }
-}
-@media (max-width: 860px) {
-  .anat-head { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
-}
 
 /* ---------------- WORK / DISCRETION ---------------- */
 /* The header has to close before the first project opens, or the two read as
@@ -388,12 +349,12 @@
   font-size: 11.5px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--accent);
 }
-.wc-sub { font-size: 15px; color: var(--paper-dim); line-height: 1.55; }
+.wc-sub { font-size: 15.5px; color: var(--paper-dim); line-height: 1.55; }
 
 @media (max-width: 860px) {
   .work-head { grid-template-columns: 1fr; gap: 1.5rem; }
     .work-frame { padding: 0.55rem; }
-  .wc-sub { font-size: 14px; }
+  .wc-sub { font-size: 14.5px; }
 }
 
 /* ---------- PROJECT-GROUPED CONCEPT WORK ----------
@@ -452,7 +413,7 @@
 .wproj-tag {
   margin-left: auto; flex-shrink: 0; align-self: center;
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--faint);
+  color: var(--muted);
   padding: 0.35rem 0.75rem; border: 1px solid var(--line); border-radius: 100px;
 }
 /* The lede answers "what is this and what does it stand for" before any
@@ -510,6 +471,16 @@
 @media (min-width: 981px) {
   .wproj-grid > .is-hero { grid-column: span 2; grid-row: span 2; }
   .wproj-grid > .is-hero .work-frame { aspect-ratio: auto; flex: 1 1 auto; }
+}
+/* Homepage summary cards only (3 images, not 6): at a 3-column grid the two
+   supporting ads sit in the remaining 1-of-3 column, roughly a third of the
+   hero's width. These exist as proof the studio designs real ads, so if a
+   variant's own on-image copy can't be read at that size it stops being
+   proof. Two columns instead of three gives each supporting image half the
+   hero's width rather than a third. */
+.wproj-grid.wproj-grid-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 981px) {
+  .wproj-grid.wproj-grid-compact > .is-hero { grid-column: span 1; grid-row: span 2; }
 }
 /* The reasoning strip. Six executions read as a batch of ads without it; with
    the variable under test and the next decision stated, they read as a
@@ -572,6 +543,27 @@
   .wproj-cat { order: 3; flex-basis: 100%; }
 }
 
+/* homepage summary card: the one-line insight sitting above the bet, and the
+   teach-line that closes the card before it hands off to the full breakdown */
+.wproj-insight { margin-top: 0.9rem; font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 46ch; }
+.wproj-teach { margin-top: clamp(1.6rem, 2.6vw, 2.2rem); font-size: 15.5px; color: var(--paper-dim); line-height: 1.6; max-width: 62ch; }
+.wproj-teach b { color: var(--paper); font-weight: 600; }
+
+/* ---------------- PROJECT DETAIL PAGE ---------------- */
+.proj-head {
+  padding: clamp(7.5rem, 13vw, 10.5rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+}
+.proj-back {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  text-decoration: none; margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
+  transition: color .2s;
+}
+.proj-back:hover { color: var(--accent); }
+.proj-head .work-note { max-width: 60ch; margin-top: 1rem; }
+.proj-body { padding-top: clamp(3rem, 5vw, 4.5rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
+
 /* ---------------- HOW A SPRINT RUNS ---------------- */
 .sprint { border-top: 1px solid var(--line); }
 .sprint-head { text-align: center; max-width: 680px; margin: 0 auto clamp(3.5rem,6vw,5rem); }
@@ -614,32 +606,31 @@
   .sprint-step:last-child { padding-bottom: 0; }
 }
 
-/* ---------------- WHO IT'S FOR ---------------- */
-.icp-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem,6vw,6rem); align-items: start; }
-.icp-left { position: sticky; top: 7rem; }
-.icp-headline { font-size: clamp(30px,4vw,50px); margin: 1.3rem 0 1.4rem; }
-.icp-body { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 2rem; max-width: 42ch; }
-.icp-tags { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-.icp-tag { font-size: 13px; padding: 0.45rem 1rem; border-radius: 100px; border: 1px solid var(--line); color: var(--paper-dim); transition: border-color .25s, color .25s; }
-.icp-tag:hover { border-color: var(--accent); color: var(--paper); }
-/* honest disqualifier, filters the enquiries that waste a discovery call */
-.icp-dq {
-  margin-top: 2rem; padding-left: 1.1rem;
-  border-left: 2px solid var(--line);
-  font-size: 14.5px; color: var(--muted); line-height: 1.65; max-width: 44ch;
-}
-.icp-cards { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-.icp-card { background: var(--ink-raised); padding: clamp(1.6rem,2.2vw,2rem); display: grid; grid-template-columns: 44px 1fr; gap: 1.25rem; align-items: start; transition: background .3s; }
+/* ---------------- WHO IT'S FOR ----------------
+   Full-width heading instead of a sticky 0.85fr column: at maxw that old
+   column ran ~480px, which forced this headline down to one or two words
+   per line. Capping the heading block at 780px instead of a fraction of the
+   grid gives it a normal reading measure while still stopping short of the
+   full 1128px content width. */
+.icp-head { max-width: 780px; margin-bottom: clamp(2.5rem,4vw,3.5rem); }
+.icp-headline { font-size: clamp(30px,4vw,50px); margin: 1.3rem 0 1rem; }
+.icp-sub { font-size: 16px; color: var(--muted); line-height: 1.6; }
+.icp-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.icp-card { background: var(--ink-raised); padding: clamp(1.8rem,2.4vw,2.2rem); display: flex; flex-direction: column; gap: 1rem; transition: background .3s; }
 .icp-card:hover { background: var(--ink-2); }
 .icp-ic { width: 44px; height: 44px; border-radius: 11px; background: var(--accent-tint); border: 1px solid rgba(201,237,106,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .icp-ic svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
-.icp-ct { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+.icp-ct { font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .icp-cd { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+/* honest disqualifier, filters the enquiries that waste a discovery call */
+.icp-dq {
+  margin-top: clamp(1.8rem,2.6vw,2.2rem); padding-left: 1.1rem;
+  border-left: 2px solid var(--line);
+  font-size: 14.5px; color: var(--muted); line-height: 1.65; max-width: 56ch;
+}
 
-@media (max-width: 860px) {
-  .icp-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .icp-left { position: static; }
-  .icp-card { grid-template-columns: 40px 1fr; }
+@media (max-width: 760px) {
+  .icp-cards { grid-template-columns: 1fr; }
 }
 
 /* ---------------- MODELS ---------------- */
@@ -651,7 +642,7 @@
 .model-card:hover { transform: translateY(-4px); }
 .model-card.featured { border-color: rgba(201,237,106,0.4); background: linear-gradient(165deg, var(--accent-tint), var(--ink-raised) 50%); }
 .model-badge { position: absolute; top: 1.6rem; right: 1.6rem; font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); background: var(--accent); padding: 0.35rem 0.8rem; border-radius: 100px; }
-.model-type { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-bottom: 1.1rem; }
+.model-type { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.1rem; }
 .model-name { font-family: var(--font-display); font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
 .model-price { font-family: var(--font-display); font-size: clamp(26px, 3vw, 34px); font-weight: 700; letter-spacing: -0.02em; color: var(--paper); margin: -0.1rem 0 0.85rem; }
 .model-price span { font-family: var(--font-body); font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-left: 0.2rem; }
@@ -676,21 +667,32 @@
 
 /* ---------------- MOAT / WHY ---------------- */
 .moat { background: var(--ink-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.moat-grid { display: grid; grid-template-columns: 0.9fr 1.4fr; gap: clamp(2.5rem,6vw,6rem); align-items: start; }
-.moat-left { position: sticky; top: 7rem; }
+/* Full-width head, then three items divided by rules rather than boxed in
+   cards. By this point in the page (ICP cards, Method grid, Offer cards all
+   precede it) another bordered-rectangle grid reads as more of the same
+   pattern the eye has already learned to skim; large outline numerals and a
+   flat divided row reset that without leaving the design system. */
+.moat-head { max-width: 760px; }
 .moat-headline { font-size: clamp(30px,3.4vw,48px); line-height: 1.08; margin-top: 1.3rem; }
-.moat-foot { margin-top: 2rem; font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 38ch; }
-.moat-items { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-.moat-item { padding: clamp(1.6rem,2.4vw,2.1rem) clamp(1.8rem,2.6vw,2.4rem); border-bottom: 1px solid var(--line-soft); display: grid; grid-template-columns: 2.4rem 1fr; gap: 1.4rem; align-items: start; transition: background .3s; background: var(--ink-2); }
-.moat-item:last-child { border-bottom: none; }
-.moat-item:hover { background: var(--ink-3); }
-.moat-num { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 0.2rem; }
-.moat-item h4 { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 0.45rem; letter-spacing: -0.01em; }
-.moat-item p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+.moat-foot { margin-top: 1.4rem; font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 62ch; }
+.moat-items { margin-top: clamp(3rem,5vw,4rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2rem,3vw,3rem); }
+.moat-item { padding-left: clamp(1.6rem,2.2vw,2rem); border-left: 1px solid var(--line); }
+.moat-item:first-child { padding-left: 0; border-left: none; }
+.moat-num {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(34px, 3.6vw, 50px); line-height: 0.85; letter-spacing: -0.03em;
+  color: var(--accent); margin-bottom: 1.1rem;
+}
+@supports (-webkit-text-stroke: 1px red) {
+  .moat-num { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+}
+.moat-item h4 { font-family: var(--font-display); font-size: 19px; font-weight: 600; margin-bottom: 0.55rem; letter-spacing: -0.01em; }
+.moat-item p { font-size: 15.5px; color: var(--muted); line-height: 1.6; }
 
-@media (max-width: 860px) {
-  .moat-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .moat-left { position: static; }
+@media (max-width: 760px) {
+  .moat-items { grid-template-columns: 1fr; gap: 2rem; }
+  .moat-item { padding-left: 0; padding-top: 1.6rem; border-left: none; border-top: 1px solid var(--line); }
+  .moat-item:first-child { padding-top: 0; border-top: none; }
 }
 
 /* ---------------- CTA ---------------- */
@@ -712,7 +714,8 @@
 .cta-email { margin-top: 2.2rem; font-size: 14px; color: var(--faint); }
 .cta-email a { color: var(--paper-dim); text-decoration: none; border-bottom: 1px solid var(--line); transition: color .2s, border-color .2s; }
 .cta-email a:hover { color: var(--accent); border-color: var(--accent); }
-.cta-note { margin-top: 0.7rem; font-size: 13px; color: var(--faint); }
+.cta-note { margin-top: 0.7rem; font-size: 13px; color: var(--muted); line-height: 1.6; }
+.cta-note b { color: var(--paper-dim); font-weight: 600; }
 
 /* ---------------- FAQ ---------------- */
 .faq { border-top: 1px solid var(--line); }
