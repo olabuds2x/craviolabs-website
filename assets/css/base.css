@@ -96,6 +96,20 @@
   --maxw: 1360px;
 }
 
+/* A single accent field. Same token-flip mechanism as .on-paper, so buttons,
+   rules and muted text keep working without an accent-specific variant. */
+.on-accent {
+  background: var(--accent);
+  color: var(--paper-ink);
+  --fg:        var(--paper-ink);
+  --fg-dim:    rgba(20, 19, 15, 0.86);
+  --fg-mute:   rgba(20, 19, 15, 0.74);
+  --fg-faint:  rgba(20, 19, 15, 0.6);
+  --rule:      rgba(20, 19, 15, 0.24);
+  --rule-soft: rgba(20, 19, 15, 0.14);
+  --mat:       rgba(20, 19, 15, 0.06);
+}
+
 .on-paper {
   background: var(--paper);
   color: var(--paper-ink);
@@ -129,6 +143,8 @@ body {
 
 img { display: block; max-width: 100%; }
 ::selection { background: var(--accent); color: var(--ink); }
+/* accent-on-accent would be invisible inside the accent field */
+.on-accent ::selection { background: var(--paper-ink); color: var(--accent); }
 a { color: inherit; }
 
 /* ---------- skip link (keyboard users) ---------- */
@@ -150,7 +166,7 @@ a { color: inherit; }
 /* ---------- shared layout primitives ---------- */
 .wrap { max-width: var(--maxw); margin: 0 auto; }
 
-section { padding: clamp(5rem, 10vw, 9.5rem) var(--gutter); }
+section { padding: clamp(3.75rem, 7vw, 7rem) var(--gutter); }
 
 /* Section label. The accent dot replaces the old rule: at this size a dot
    reads as a marker rather than a decorative underline fragment. */
@@ -291,7 +307,7 @@ nav.scrolled { background: rgba(11, 11, 12, 0.88); }
 /* ---------- footer ---------- */
 footer {
   border-top: 1px solid var(--rule);
-  padding: clamp(3.5rem, 7vw, 6rem) var(--gutter) 2rem;
+  padding: clamp(3rem, 5.5vw, 4.75rem) var(--gutter) 2rem;
 }
 .footer-grid {
   max-width: var(--maxw);
@@ -328,7 +344,7 @@ footer {
 .footer-col a:hover { color: var(--paper); }
 .footer-bottom {
   max-width: var(--maxw);
-  margin: clamp(3rem, 6vw, 5rem) auto 0;
+  margin: clamp(2.25rem, 4.5vw, 3.5rem) auto 0;
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
   display: flex;

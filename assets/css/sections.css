@@ -6,56 +6,90 @@
 @keyframes k-fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---------------- HERO ----------------
-   No ornament, no offer card, no rotating stamp: the headline is the largest
-   thing on the page and everything else defers to it. The entrance is a CSS
-   animation rather than a .reveal, because the hero is above the fold and
-   must not depend on the observer having fired. */
+   Centred and frame-filling. Left-aligned, the headline reached about two
+   thirds across and left the right of the screen empty, which read as an
+   unfinished composition rather than restraint. Here the type runs the full
+   measure and the two sentences contrast by treatment, not by size: the claim
+   upright at full value, the answer italic and stepped back. No ornament, no
+   card, no rule. The entrance is a CSS animation rather than a .reveal,
+   because the hero is above the fold and must not wait on the observer. */
 .hero {
-  min-height: 86vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(140px, 18vh, 220px) var(--gutter) clamp(3.5rem, 7vh, 6.25rem);
+  padding: clamp(130px, 16vh, 190px) var(--gutter) clamp(3rem, 6vh, 5.5rem);
 }
-.hero-inner { max-width: var(--maxw); margin: 0 auto; width: 100%; }
+.hero-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
 
 .hero-eyebrow { animation: k-fade .9s ease both; }
 
+/* Sized to fill the measure at every width. The two sentences wrap into each
+   other deliberately, so the block reads as one monumental paragraph. */
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(54px, 9vw, 158px);
-  line-height: 0.88;
-  letter-spacing: -0.028em;
+  font-size: clamp(44px, 11.4vw, 168px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   color: var(--fg);
-  margin-top: clamp(26px, 3.5vw, 46px);
+  margin-top: clamp(24px, 3vw, 40px);
+  text-wrap: balance;
   animation: k-rise 1.1s var(--ease) both;
 }
-/* the second line steps back in value and indents, so the two lines read as
-   a claim and its answer rather than one continuous sentence */
 .hero-headline .ser {
   font-style: italic;
-  display: inline-block;
-  margin-left: clamp(0px, 4.5vw, 92px);
-  color: rgba(237, 234, 228, 0.7);
+  color: rgba(237, 234, 228, 0.62);
 }
-.hero-sub {
-  font-size: clamp(18px, 1.45vw, 22px);
-  line-height: 1.55;
-  color: var(--fg-dim);
-  max-width: 44ch;
-  margin-top: clamp(36px, 4.5vw, 64px);
-  text-wrap: pretty;
+
+/* Two tiers, not one paragraph. The plain-English explanation is sized close
+   to a sub-headline and set at full value; the scope and channels drop to a
+   quieter step below it. */
+.hero-lead {
+  font-size: clamp(19px, 1.85vw, 27px);
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+  color: var(--fg);
+  max-width: 56ch;
+  margin: clamp(32px, 4vw, 52px) auto 0;
+  text-wrap: balance;
   animation: k-rise 1.1s .14s var(--ease) both;
+}
+.hero-scope {
+  font-size: clamp(15.5px, 1.1vw, 17.5px);
+  line-height: 1.6;
+  color: var(--fg-mute);
+  max-width: 76ch;
+  margin: clamp(12px, 1.2vw, 16px) auto 0;
+  text-wrap: balance;
+  animation: k-rise 1.1s .2s var(--ease) both;
 }
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 0.75rem;
-  margin-top: clamp(30px, 3.5vw, 44px);
-  animation: k-rise 1.1s .24s var(--ease) both;
+  justify-content: center;
+  margin-top: clamp(28px, 3.2vw, 40px);
+  animation: k-rise 1.1s .26s var(--ease) both;
+}
+
+/* On a phone the viewport is tall and narrow, so a 92vh hero strands the
+   block in the middle of an empty screen. Height follows the content instead,
+   and the headline takes a larger share of the width to keep its presence. */
+@media (max-width: 620px) {
+  .hero {
+    min-height: auto;
+    padding-top: clamp(112px, 21vh, 150px);
+    padding-bottom: clamp(2.5rem, 7vh, 4rem);
+  }
+  .hero-headline { font-size: clamp(38px, 12.6vw, 62px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, .hero-headline, .hero-sub, .hero-actions { animation: none; }
+  .hero-eyebrow, .hero-headline, .hero-lead, .hero-scope, .hero-actions { animation: none; }
 }
 
 /* ---------------- PROOF ----------------
@@ -63,7 +97,7 @@
    two supporting pieces beside it, sized by a shared height so mixed ratios
    line up. The six-up thumbnail grid that sat here read as a contact sheet and
    argued volume, which is the opposite of what the work below sells. */
-.proof { padding-top: clamp(2rem, 5vw, 4.5rem); padding-bottom: 0; }
+.proof { padding-top: clamp(1.75rem, 3.5vw, 3.5rem); padding-bottom: 0; }
 .proof-inner { max-width: var(--maxw); margin: 0 auto; }
 .proof-grid {
   display: grid;
@@ -113,23 +147,28 @@
    The brief contrast is the most distinctive thing Kalvano can say, so it is
    the headline. "More than a designer, without the agency overhead" reads as
    positioning boilerplate by comparison and demotes to the supporting line. */
+/* Centred, unlike the section heads that pair with a second column. A
+   standalone statement at this scale cannot fill the measure without taking
+   hero-sized type, so left-aligning it leaves a dead right-hand column;
+   centring turns the same space into margin on both sides. */
+.compare-head { text-align: center; }
 .compare-headline {
-  font-size: clamp(36px, 5.4vw, 88px);
-  margin-top: 1.4rem;
-  max-width: 16ch;
+  font-size: clamp(36px, 5.8vw, 96px);
+  margin: 1.4rem auto 0;
+  max-width: 30ch;
 }
 .compare-support {
   font-size: clamp(17px, 1.4vw, 21px);
   line-height: 1.5;
   color: var(--fg-mute);
-  margin-top: 1.6rem;
+  margin: 1.6rem auto 0;
   max-width: 46ch;
 }
 .compare-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 2vw, 1.75rem);
-  margin-top: clamp(3rem, 6vw, 5.5rem);
+  margin-top: clamp(2.25rem, 4.5vw, 4rem);
 }
 .compare-col {
   border: 1px solid var(--rule);
@@ -174,32 +213,38 @@
    The line that kills the consultancy misconception, so it gets a full band to
    itself rather than a column beside the comparison cards. Nothing else is on
    the screen when a visitor reads it. */
-.manifesto { border-top: 1px solid var(--rule); }
-.manifesto-inner { max-width: var(--maxw); margin: 0 auto; }
+.manifesto { border-top: 0; }
+.manifesto-inner { max-width: var(--maxw); margin: 0 auto; text-align: center; }
 .manifesto-headline {
-  font-size: clamp(32px, 5vw, 82px);
-  line-height: 1.02;
-  max-width: 24ch;
+  font-size: clamp(32px, 5.4vw, 90px);
+  line-height: 1.06;
+  max-width: 34ch;
+  margin: 0 auto;
 }
+/* the rule is centred and short, so it reads as a caption divider rather than
+   a left-anchored underline stranded beneath centred type */
 .manifesto-note {
   font-size: 16px; color: var(--fg-mute);
-  margin-top: clamp(2rem, 3.5vw, 3rem);
+  margin: clamp(1.5rem, 2.6vw, 2.25rem) auto 0;
   padding-top: 1.4rem;
   border-top: 1px solid var(--rule);
-  max-width: 52ch;
+  max-width: 34ch;
 }
 
 /* ---------------- METHOD ---------------- */
 .services { background: var(--ink-raised); border-top: 1px solid var(--rule); }
+/* the intro used to start at 55% of the width, leaving a void between it and
+   a headline that ends around 30%. A narrower left track and a capped measure
+   bring the two into the same optical block. */
 .services-head {
-  max-width: var(--maxw); margin: 1.4rem auto 0;
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.5rem, 4vw, 4rem); align-items: end;
+  max-width: var(--maxw); margin: 1.2rem auto 0;
+  display: grid; grid-template-columns: 0.86fr 1.14fr;
+  gap: clamp(1.25rem, 2.6vw, 2.75rem); align-items: end;
 }
 .services-headline { font-size: clamp(36px, 5vw, 78px); }
-.services-intro { font-size: 17px; line-height: 1.6; color: var(--fg-mute); padding-bottom: 0.6rem; }
+.services-intro { font-size: 17px; line-height: 1.6; color: var(--fg-mute); padding-bottom: 0.5rem; max-width: 32ch; }
 .services-grid {
-  max-width: var(--maxw); margin: clamp(3.25rem, 7vw, 6.25rem) auto 0;
+  max-width: var(--maxw); margin: clamp(2.5rem, 4.5vw, 4rem) auto 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 3rem);
 }
@@ -227,15 +272,19 @@
    The one section on the paper ground. Concept work is the page's evidence,
    so it gets the inversion rather than a tinted panel, and the foreign brand
    colours in the ads read as portfolio content against it. */
-.work-headline { font-size: clamp(36px, 5vw, 78px); margin-top: 1.4rem; max-width: 18ch; }
+.work-headline { font-size: clamp(36px, 5vw, 78px); margin-top: 1.2rem; max-width: 18ch; }
+/* Headline and its two supporting paragraphs on one row. They used to stack as
+   two full-width rows, which left the space beside the headline empty and made
+   the header nearly as tall as a project. */
 .work-head {
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(1.25rem, 4vw, 4.5rem);
-  margin-top: clamp(1.75rem, 3vw, 2.75rem);
-  padding-bottom: clamp(2.25rem, 4vw, 4rem);
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.25rem, 3vw, 3.5rem);
+  align-items: end;
+  padding-bottom: clamp(1.75rem, 2.8vw, 2.75rem);
   border-bottom: 1px solid var(--rule);
 }
+.work-head-text { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 0.4rem; }
 .work-lede { font-size: 18px; line-height: 1.6; color: var(--fg-dim); text-wrap: pretty; }
 .work-note { font-size: 15.5px; line-height: 1.6; color: var(--fg-mute); }
 .work-note b { color: var(--fg); font-weight: 600; }
@@ -321,7 +370,7 @@
   display: grid;
   grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
   gap: clamp(1.75rem, 5vw, 5rem);
-  padding: clamp(3.25rem, 7vw, 6.25rem) 0;
+  padding: clamp(2.5rem, 4.8vw, 4.5rem) 0;
   border-bottom: 1px solid var(--rule);
 }
 .wproj.is-summary:last-child { border-bottom: none; }
@@ -427,12 +476,12 @@
 .offer-head {
   max-width: var(--maxw); margin: 1.4rem auto 0;
   display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.5rem, 4vw, 4rem); align-items: end;
+  gap: clamp(1.25rem, 2.6vw, 2.75rem); align-items: end;
 }
 .offer-headline { font-size: clamp(32px, 4vw, 62px); line-height: 1.04; }
 .offer-intro { font-size: 17px; line-height: 1.6; color: var(--fg-mute); padding-bottom: 0.6rem; text-wrap: pretty; }
 .offer-grid {
-  max-width: var(--maxw); margin: clamp(3rem, 6vw, 5.5rem) auto 0;
+  max-width: var(--maxw); margin: clamp(2.25rem, 4.2vw, 3.75rem) auto 0;
   display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   gap: clamp(1rem, 2vw, 1.75rem);
   align-items: start;
@@ -522,12 +571,12 @@
 .icp-head {
   max-width: var(--maxw); margin: 1.4rem auto 0;
   display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.5rem, 4vw, 4.5rem); align-items: end;
+  gap: clamp(1.25rem, 2.6vw, 3rem); align-items: end;
 }
 .icp-headline { font-size: clamp(36px, 4.8vw, 72px); max-width: 22ch; }
 .icp-sub { font-size: 17px; line-height: 1.6; color: var(--fg-dim); padding-bottom: 0.6rem; text-wrap: pretty; }
 .icp-tags {
-  max-width: var(--maxw); margin: clamp(2.5rem, 5vw, 4.25rem) auto 0;
+  max-width: var(--maxw); margin: clamp(1.75rem, 3.2vw, 2.75rem) auto 0;
   list-style: none; display: flex; flex-wrap: wrap; gap: 0.625rem;
 }
 .icp-tags li {
@@ -541,11 +590,11 @@
 .icp-dq { max-width: var(--maxw); margin: 1.9rem auto 0; font-size: 16px; color: var(--fg-mute); }
 
 .sprint {
-  max-width: var(--maxw); margin: clamp(4rem, 8vw, 7.5rem) auto 0;
-  padding-top: clamp(2.5rem, 4vw, 3.75rem);
+  max-width: var(--maxw); margin: clamp(2.75rem, 5.5vw, 5rem) auto 0;
+  padding-top: clamp(2rem, 3.2vw, 3rem);
   border-top: 1px solid var(--rule);
 }
-.sprint-headline { font-size: clamp(32px, 4vw, 58px); margin: 1.25rem 0 clamp(2.25rem, 4vw, 3.5rem); }
+.sprint-headline { font-size: clamp(32px, 4vw, 58px); margin: 1.1rem 0 clamp(1.75rem, 3vw, 2.75rem); }
 .sprint-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
 .sprint-step { position: relative; border-top: 1px solid rgba(237, 234, 228, 0.18); padding-top: 1.25rem; }
 .sprint-dot {
@@ -620,13 +669,13 @@
 }
 
 /* ---------------- CTA ---------------- */
-.cta { border-top: 1px solid var(--rule); padding-top: clamp(6rem, 13vw, 12.5rem); padding-bottom: clamp(6rem, 13vw, 12.5rem); }
+.cta { border-top: 1px solid var(--rule); padding-top: clamp(4.5rem, 9vw, 8.5rem); padding-bottom: clamp(4.5rem, 9vw, 8.5rem); }
 .cta-inner { max-width: var(--maxw); margin: 0 auto; }
 .cta-headline { font-size: clamp(40px, 6.8vw, 116px); line-height: 0.96; letter-spacing: -0.028em; max-width: 18ch; }
 .cta-lower {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(1.75rem, 5vw, 5.5rem); align-items: end;
-  margin-top: clamp(2.75rem, 6vw, 5.25rem);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
 }
 .cta-sub { font-size: clamp(18px, 1.5vw, 23px); line-height: 1.55; color: var(--fg-dim); text-wrap: pretty; }
 .cta-actions .btn { padding: 1.35rem 2.5rem; font-size: 17px; }
