@@ -191,18 +191,8 @@
   .hero-headline { font-size: clamp(44px, 13vw, 80px); }
 }
 
-/* ---------------- PROOF ("from idea to finished ad") ----------------
-   Reuses .hero-strip / .hero-shot wholesale: it's already exactly the "show
-   several strong examples with very little explanation" pattern this
-   section needs, just with its own heading above and real (non-decorative)
-   alt text on the images instead of the hero's aria-hidden treatment. */
-.proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.proof-head { max-width: 640px; margin: 0 auto clamp(2.5rem,4vw,3rem); text-align: center; padding: 0 var(--gutter); }
-.proof-headline { font-size: clamp(28px,3.8vw,46px); margin: 1.2rem 0 0.8rem; }
-.proof-sub { font-size: 16px; color: var(--muted); }
-
 /* ---------------- WHY KALVANO IS DIFFERENT ---------------- */
-.compare { background: var(--ink-raised); border-bottom: 1px solid var(--line); }
+.compare { background: var(--ink-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .compare-head { max-width: 720px; margin: 0 auto; text-align: center; }
 /* the second line runs long ("Without the full-service agency overhead"),
    so this is capped lower than the similarly-structured scope/moat
