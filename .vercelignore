@@ -14,3 +14,6 @@
 !/robots.txt
 !/sitemap.xml
 !/assets
+# the three concept project pages. Omitting these 404'd every /work/ URL in
+# the sitemap and every "See the full concept" link on the homepage.
+!/work
