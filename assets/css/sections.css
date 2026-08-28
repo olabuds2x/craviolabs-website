@@ -34,8 +34,8 @@
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 11.4vw, 168px);
-  line-height: 0.9;
+  font-size: clamp(38px, 8vw, 116px);
+  line-height: 0.96;
   letter-spacing: -0.03em;
   color: var(--fg);
   margin-top: clamp(24px, 3vw, 40px);
@@ -51,23 +51,14 @@
    to a sub-headline and set at full value; the scope and channels drop to a
    quieter step below it. */
 .hero-lead {
-  font-size: clamp(19px, 1.85vw, 27px);
-  line-height: 1.4;
-  letter-spacing: -0.012em;
-  color: var(--fg);
-  max-width: 56ch;
-  margin: clamp(32px, 4vw, 52px) auto 0;
+  font-size: clamp(18px, 1.65vw, 25px);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--fg-dim);
+  max-width: 72ch;
+  margin: clamp(30px, 3.6vw, 46px) auto 0;
   text-wrap: balance;
   animation: k-rise 1.1s .14s var(--ease) both;
-}
-.hero-scope {
-  font-size: clamp(15.5px, 1.1vw, 17.5px);
-  line-height: 1.6;
-  color: var(--fg-mute);
-  max-width: 76ch;
-  margin: clamp(12px, 1.2vw, 16px) auto 0;
-  text-wrap: balance;
-  animation: k-rise 1.1s .2s var(--ease) both;
 }
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 0.75rem;
@@ -85,62 +76,11 @@
     padding-top: clamp(112px, 21vh, 150px);
     padding-bottom: clamp(2.5rem, 7vh, 4rem);
   }
-  .hero-headline { font-size: clamp(38px, 12.6vw, 62px); }
+  .hero-headline { font-size: clamp(34px, 11.2vw, 56px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, .hero-headline, .hero-lead, .hero-scope, .hero-actions { animation: none; }
-}
-
-/* ---------------- PROOF ----------------
-   The hero's visual proof, not a gallery preview. One dominant execution with
-   two supporting pieces beside it, sized by a shared height so mixed ratios
-   line up. The six-up thumbnail grid that sat here read as a contact sheet and
-   argued volume, which is the opposite of what the work below sells. */
-.proof { padding-top: clamp(1.75rem, 3.5vw, 3.5rem); padding-bottom: 0; }
-.proof-inner { max-width: var(--maxw); margin: 0 auto; }
-.proof-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: clamp(0.875rem, 1.6vw, 1.5rem);
-}
-.proof-side { display: grid; gap: clamp(0.875rem, 1.6vw, 1.5rem); align-content: stretch; }
-.proof-tile {
-  min-width: 0;
-  background: var(--mat);
-  border: 1px solid var(--rule);
-  padding: clamp(0.5rem, 1.1vw, 1rem);
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
-.proof-lead { height: clamp(360px, 52vw, 720px); }
-.proof-side .proof-tile { height: calc((clamp(360px, 52vw, 720px) - clamp(0.875rem, 1.6vw, 1.5rem)) / 2); }
-.proof-tile img {
-  width: auto; height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  filter: saturate(0.92) brightness(0.97);
-  transition: filter .35s;
-}
-.proof-tile:hover img { filter: none; }
-.proof-note {
-  font-size: 16px; line-height: 1.6;
-  color: var(--fg-mute);
-  margin-top: 1.4rem;
-  max-width: 62ch;
-}
-.proof-note a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(217, 108, 58, 0.4);
-}
-.proof-note a:hover { border-bottom-color: var(--accent); }
-
-@media (max-width: 920px) {
-  .proof-grid { grid-template-columns: minmax(0, 1fr); }
-  .proof-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .proof-lead { height: clamp(320px, 78vw, 560px); }
-  .proof-side .proof-tile { height: clamp(160px, 38vw, 280px); }
+  .hero-eyebrow, .hero-headline, .hero-lead, .hero-actions { animation: none; }
 }
 
 /* ---------------- WHY KALVANO ----------------
@@ -320,14 +260,131 @@
 .wc-sub { font-size: 15px; line-height: 1.5; color: var(--fg-mute); }
 
 /* ---------- PROJECT BLOCK ----------
-   Two shapes from one set of parts. Default: a stacked breakdown, used on the
-   project pages where the full six executions and the reasoning strip appear.
-   .is-summary: the homepage split, thinking on the left and three lead ads on
-   the right, hairline-separated rather than panelled. */
+   Two shapes from one set of parts. .is-summary is the homepage case study;
+   the default stacked breakdown is used on the project pages, where the full
+   six executions and the reasoning strip appear. */
 .wproj { max-width: var(--maxw); margin: 0 auto; }
-.wproj-bar { display: flex; align-items: baseline; gap: 0.875rem; flex-wrap: wrap; }
-.wproj-num { font-family: var(--font-display); font-size: 34px; line-height: 1; color: var(--accent); flex: none; }
-.wproj-cat {
+
+/* --- homepage case study ---
+   A compact two-column card, not a written case study. The strategy and the
+   finished work have to be readable in the same viewport: the previous
+   full-width stack (category row, then an Insight/Bet row, then the ads) had
+   the graphics starting most of a screen below the thinking, which broke the
+   connection the section exists to make.
+
+   What survives from that attempt is the hierarchy. The business category
+   outranks the concept name, so a scanning visitor knows what kind of product
+   the work is for before they meet "Order the coffee." */
+.wproj.is-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+  gap: clamp(1.5rem, 3vw, 3.25rem);
+  padding: clamp(2.5rem, 4.8vw, 4.5rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.wproj.is-summary:last-child { border-bottom: none; }
+/* the strategy stays alongside the executions rather than ending a third of
+   the way up them and leaving the left of the card empty */
+.wproj-strategy { position: sticky; top: 110px; }
+
+.is-summary .wproj-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.5vw, 38px); line-height: 1;
+  color: var(--accent);
+}
+/* Set as a label rather than a headline, but at a size and weight that make it
+   the first thing read in the block. Uppercase carries the "this is context,
+   not the idea" signal that a serif heading would lose. */
+.is-summary .wproj-cat {
+  font-size: clamp(20px, 1.95vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--fg);
+  margin-top: 0.55rem;
+}
+.is-summary .wproj-concept {
+  font-size: 17.5px;
+  line-height: 1.35;
+  color: var(--fg-mute);
+  margin-top: 0.9rem;
+}
+.is-summary .wproj-concept em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.42em;
+  color: var(--fg-dim);
+}
+/* Insight and the bet are half of what Kalvano sells, so they are set as
+   deliberate outputs: each on its own ruled block, at a size that holds its
+   own against the ads rather than reading as annotation beside them. */
+.wproj-block {
+  margin-top: clamp(1.1rem, 1.8vw, 1.5rem);
+  padding-top: clamp(0.9rem, 1.4vw, 1.2rem);
+  border-top: 1px solid var(--rule);
+}
+.wproj-label {
+  display: block;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent);
+}
+.wproj-block p {
+  font-size: 17.5px; line-height: 1.6;
+  color: var(--fg-dim);
+  margin-top: 0.6rem;
+  text-wrap: pretty;
+}
+.wproj-strategy .model-link { margin-top: clamp(1.4rem, 2.2vw, 1.9rem); }
+
+/* names the ads as the execution of the idea beside them, and starts the work
+   at the top of the card rather than below the copy */
+.wproj-exec { margin-bottom: clamp(0.75rem, 1.4vw, 1.1rem); }
+
+.wproj-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.875rem, 1.6vw, 1.5rem); }
+
+/* One large primary ad over two supporting. Frames are sized by a shared
+   height with the width following each ad's own ratio, so mixed 4:5, 1:1 and
+   5:4 executions sit together without matting a third of every frame. The
+   heights are tuned so the supporting pair spans about the same width as the
+   ad above it. */
+.wproj-grid-summary {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1vw, 0.9rem);
+}
+/* the pair sits flush under the lead ad. In two equal grid tracks they were
+   pushed to opposite ends of the column with a gap down the middle, which read
+   as two loose thumbnails rather than one set. */
+.wproj-pair { display: flex; gap: clamp(0.75rem, 1.4vw, 1.25rem); align-items: start; }
+.wproj-grid-summary .work-figure { align-items: start; gap: 0.5rem; }
+.wproj-grid-summary .work-frame {
+  aspect-ratio: auto;
+  width: fit-content;
+  max-width: 100%;
+  height: clamp(120px, 16vw, 232px);
+}
+.wproj-grid-summary .work-frame img { width: auto; height: 100%; }
+.wproj-grid-summary > .is-hero .work-frame { height: clamp(240px, 39vw, 560px); }
+.wproj-grid-summary .wc-sub { font-size: 14px; }
+
+/* --- project page breakdown ---
+   The /work/ pages keep the masthead-and-lede shape: they carry six executions
+   plus a reasoning strip, which the homepage case-study layout is not built
+   for. Their category label stays a masthead item rather than a heading. */
+.wproj-bar {
+  display: flex; align-items: baseline; gap: 0.875rem; flex-wrap: wrap;
+  padding-bottom: clamp(1rem, 1.8vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 2.6vw, 2.25rem);
+  border-bottom: 1px solid var(--rule);
+}
+.wproj-bar .wproj-num {
+  font-family: var(--font-display); font-size: 34px; line-height: 1;
+  color: var(--accent); flex: none;
+}
+.wproj-bar .wproj-cat {
   font-size: 12px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--fg-mute);
@@ -344,17 +401,6 @@
   font-size: clamp(32px, 3.6vw, 54px);
   line-height: 1.02; letter-spacing: -0.018em;
   color: var(--fg);
-  margin-top: 1.6rem;
-}
-.wproj-insight {
-  font-size: 18px; line-height: 1.6; color: var(--fg-dim);
-  margin-top: 1.4rem; max-width: 46ch; text-wrap: pretty;
-}
-/* the one line a scanning visitor has to read, so it gets its own rule */
-.wproj-bet {
-  margin-top: 1.9rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--rule);
 }
 .wproj-bet-label {
   display: block;
@@ -363,35 +409,7 @@
   color: var(--accent);
 }
 .wproj-bet p { font-size: 17px; line-height: 1.6; color: var(--fg-dim); margin-top: 0.75rem; text-wrap: pretty; }
-.wproj-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.875rem, 1.6vw, 1.5rem); }
 
-/* --- homepage summary --- */
-.wproj.is-summary {
-  display: grid;
-  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
-  gap: clamp(1.75rem, 5vw, 5rem);
-  padding: clamp(2.5rem, 4.8vw, 4.5rem) 0;
-  border-bottom: 1px solid var(--rule);
-}
-.wproj.is-summary:last-child { border-bottom: none; }
-/* Summary frames are sized by a shared height with the width following each
-   ad's own ratio, so a row of mixed 4:5, 1:1 and 5:4 executions lines up
-   without matting a third of every frame. Fixing the lead to the full span
-   instead would run it past 900px tall and tower over the thinking column. */
-.wproj-grid-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
-.wproj-grid-summary .work-figure { align-items: center; }
-.wproj-grid-summary .work-frame {
-  aspect-ratio: auto;
-  height: clamp(230px, 27vw, 370px);
-  width: fit-content;
-  max-width: 100%;
-}
-.wproj-grid-summary .work-frame img { width: auto; height: 100%; }
-.wproj-grid-summary .work-cap { text-align: center; }
-.wproj-grid-summary > .is-hero { grid-column: span 2; }
-.wproj-grid-summary > .is-hero .work-frame { height: min(68vh, 660px); }
-
-/* --- project page breakdown --- */
 .wproj-lede {
   display: grid; grid-template-columns: 1fr 1.05fr;
   gap: clamp(1.5rem, 4vw, 4rem); align-items: start;
@@ -399,8 +417,6 @@
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
   border-bottom: 1px solid var(--rule);
 }
-.wproj-lede .wproj-title { margin-top: 0; }
-.wproj-lede .wproj-bet { margin-top: 0; padding-top: 0; border-top: none; }
 .wproj-meta {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(1.5rem, 3.5vw, 3.5rem);
@@ -446,9 +462,14 @@
 
 @media (max-width: 980px) {
   .work-head, .wproj.is-summary, .wproj-lede, .wproj-foot { grid-template-columns: minmax(0, 1fr); }
+  .wproj-work { margin-top: 0.5rem; }
+  .wproj-strategy { position: static; }
   .wproj-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wproj-meta { grid-template-columns: 1fr; }
 }
+/* two ~20ch columns is not a reading measure, so the pair stacks before it
+   gets there; the ad pair follows at the narrow end */
+
 @media (max-width: 620px) {
   .wproj-bar { row-gap: 0.5rem; }
   .wproj-tag { margin-left: 0; }
