@@ -67,6 +67,21 @@
   animation: k-rise 1.1s .26s var(--ease) both;
 }
 
+/* The reassurance line under the buttons. It answers the two questions a
+   visitor has at the moment of clicking (how long, and what do I have to
+   prepare) so it sits with the action, not up in the lead. Quiet enough that
+   it reads as a footnote to the CTA rather than a third tier of the pitch. */
+.hero-note {
+  font-size: clamp(13.5px, 1vw, 15px);
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--fg-mute);
+  max-width: 72ch;
+  margin: clamp(16px, 1.8vw, 22px) auto 0;
+  text-wrap: balance;
+  animation: k-rise 1.1s .34s var(--ease) both;
+}
+
 /* On a phone the viewport is tall and narrow, so a 92vh hero strands the
    block in the middle of an empty screen. Height follows the content instead,
    and the headline takes a larger share of the width to keep its presence. */
@@ -80,7 +95,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, .hero-headline, .hero-lead, .hero-actions { animation: none; }
+  .hero-eyebrow, .hero-headline, .hero-lead, .hero-actions, .hero-note { animation: none; }
 }
 
 /* ---------------- WHY KALVANO ----------------
