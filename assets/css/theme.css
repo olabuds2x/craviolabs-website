@@ -150,3 +150,45 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid #
  .case-head { padding-bottom:28px; }
  .case-summary dd { font-size:15px; }.case-summary-angle dd { font-size:22px; }
 }
+
+/* Case-study opening: identity, output and strategy each get their own space. */
+.case-head { padding-top:160px; padding-bottom:64px; }
+.case-head .proj-back { margin-bottom:48px; }
+.case-masthead { display:grid; grid-template-columns:1.2fr .8fr; gap:80px; align-items:center; }
+.case-title { font-size:clamp(44px,5.5vw,78px); margin-top:28px; }
+.case-subtitle { margin-top:16px; font-size:18px; }
+.case-identity .work-note { margin-top:24px; max-width:48ch; line-height:1.7; }
+.case-overview { display:flex; gap:26px; align-items:center; padding:36px; border:1px solid #303034; border-radius:28px; background:linear-gradient(135deg,#1b1c1c,#0a0a0b); }
+.case-overview-number { display:flex; align-items:center; justify-content:center; width:106px; height:106px; flex:none; border-radius:50%; background:#c5e478; color:#11140d; font-size:44px; font-weight:600; letter-spacing:-.06em; }
+.case-overview-title { font-size:23px; line-height:1.3; letter-spacing:-.03em; font-weight:500; }
+.case-jump { display:inline-flex; align-items:center; gap:18px; min-height:44px; margin-top:16px; font-size:13px; color:var(--fg-mute); text-decoration:none; }
+.case-jump:hover { color:var(--fg); }
+.case-story { display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:stretch; margin-bottom:72px; }
+.case-context { display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:0; border:0; background:none; }
+.case-context-card { padding:30px; border:1px solid #303034; border-radius:24px; background:#111113; }
+.case-context dt,.case-angle .wproj-label { display:flex; flex-direction:column; align-items:start; gap:24px; margin:0; font-size:11px; font-weight:500; letter-spacing:.07em; }
+.case-step { display:flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #48484c; border-radius:50%; font-size:12px; letter-spacing:0; }
+.case-context dd { margin-top:18px; font-size:16px; line-height:1.65; }
+.case-context .is-insight { background:#efefed; border-color:#efefed; }
+.case-context .is-insight dt { color:#50504d; }.case-context .is-insight dd { color:#282825; }.is-insight .case-step { color:#efefed; background:#171715; border-color:#171715; }
+.case-story .case-angle { border-radius:24px; padding:30px; background:#c5e478; color:#11140d; }
+.case-angle .wproj-label { color:#39432a; }
+.case-angle .case-step { background:#14190f; color:#e8f6cf; border-color:#14190f; }
+.case-story .case-angle h2 { margin-top:22px; color:#11140d; font-size:clamp(25px,2.6vw,36px); line-height:1.2; max-width:18ch; }
+.case-executions-head { display:grid; grid-template-columns:.7fr 1.3fr; gap:10px 48px; padding-top:0; margin-bottom:36px; }
+.case-executions-head h2 { grid-row:1/3; font-size:30px; }
+.case-executions-head p { margin:0; }.case-executions-head .case-execution-note { grid-column:2; }
+@media(max-width:1000px) {
+ .case-masthead { gap:32px; grid-template-columns:1fr 1fr; }
+ .case-overview { padding:26px; gap:18px; }.case-overview-number { width:76px; height:76px; font-size:34px; }.case-overview-title { font-size:20px; }
+ .case-story { grid-template-columns:1fr; }.case-story .case-angle { display:grid; grid-template-columns:.5fr 1.5fr; gap:24px; align-items:center; }.case-story .case-angle h2 { margin:0; max-width:30ch; }
+}
+@media(max-width:620px) {
+ .case-head { padding-top:124px; padding-bottom:36px; }.case-head .proj-back { margin-bottom:32px; }
+ .case-masthead { grid-template-columns:1fr; gap:32px; }.case-title { margin-top:24px; }
+ .case-overview { padding:24px; border-radius:22px; gap:24px; }.case-overview-number { width:82px; height:82px; font-size:36px; }
+ .case-context { grid-template-columns:1fr; gap:16px; }.case-context-card,.case-story .case-angle { padding:26px; }
+ .case-context dt,.case-angle .wproj-label { flex-direction:row; align-items:center; gap:16px; }
+ .case-story { gap:16px; margin-bottom:48px; }.case-story .case-angle { display:block; }.case-story .case-angle h2 { margin-top:24px; font-size:30px; }
+ .case-executions-head { grid-template-columns:1fr; gap:16px; margin-bottom:28px; }.case-executions-head h2 { grid-row:auto; font-size:26px; }.case-executions-head .case-execution-note { grid-column:1; }
+}
