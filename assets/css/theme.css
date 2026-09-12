@@ -192,3 +192,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid #
  .case-story { gap:16px; margin-bottom:48px; }.case-story .case-angle { display:block; }.case-story .case-angle h2 { margin-top:24px; font-size:30px; }
  .case-executions-head { grid-template-columns:1fr; gap:16px; margin-bottom:28px; }.case-executions-head h2 { grid-row:auto; font-size:26px; }.case-executions-head .case-execution-note { grid-column:1; }
 }
+
+/* Homepage work: a short premise, a clear angle, and useful testing options. */
+.mini-case .case-summary { margin-top:28px; }
+.mini-case .case-summary > div + div { margin-top:24px; }
+.mini-case .case-summary .case-summary-angle { padding:24px; border:0; border-radius:20px; background:#c5e478; }
+.mini-case .case-summary-angle dt { color:#414c2c; margin-bottom:12px; }
+.mini-case .case-summary-angle dd { color:#11140d; font-size:clamp(22px,2vw,28px); line-height:1.2; }
+.mini-case .case-angle-context { display:block; margin-top:12px; color:#354021; font-size:14px; font-weight:400; line-height:1.6; letter-spacing:0; }
