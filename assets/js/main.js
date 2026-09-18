@@ -81,7 +81,7 @@
     });
     // the panel only exists below the breakpoint; never leave it stuck open on resize
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 860 && nav.classList.contains('open')) setMenu(false);
+      if (window.innerWidth > 920 && nav.classList.contains('open')) setMenu(false);
     }, { passive: true });
   }
 
