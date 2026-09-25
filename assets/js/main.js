@@ -124,4 +124,49 @@
       window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
+
+  // Load one YouTube player only after a visitor chooses a video.
+  const videoDialog = document.querySelector('.video-dialog');
+  if (videoDialog && typeof videoDialog.showModal === 'function') {
+    const scripts = {
+      iPE7c8uJ1es: 'If your team keeps making new static ads from the same old ideas, you’re not really testing anything new. Kalvano researches what your customers are saying, what competitors are missing, and where fresh angles are hiding. Then they turn those insights into static ads your team can actually test.',
+      t7ratD69s4A: 'What stands out about Kalvano is that they don’t start with design. They start with research. They look at what customers are saying, what competitors are doing, and where the gaps are, then turn those insights into fresh static ads brands can actually test.',
+      _SQNncZIyI0: 'What stands out to me about Kalvano is that they’re not just producing more ads for the sake of volume. They start by looking at what customers are actually saying, how competitors are positioning themselves, and where there may be gaps others are missing. Then they turn those insights into fresh static ad concepts that brands can actually test. That feels like a much more strategic way to approach creative, because you’re not just guessing what might work. You’re building from real customer insight.'
+    };
+    const player = videoDialog.querySelector('.video-player');
+    let videoTrigger;
+    document.querySelectorAll('[data-video]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const id = link.dataset.video;
+        if (!Object.prototype.hasOwnProperty.call(scripts, id)) return;
+        event.preventDefault();
+        videoTrigger = link;
+        videoDialog.querySelector('#video-dialog-title').textContent = link.dataset.videoTitle;
+        videoDialog.querySelector('.video-youtube-link').href = link.href;
+        videoDialog.querySelector('.video-transcript p').textContent = scripts[id];
+        videoDialog.querySelector('.video-transcript').open = false;
+        const frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0&cc_load_policy=1';
+        frame.title = link.dataset.videoTitle;
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        player.replaceChildren(frame);
+        videoDialog.showModal();
+        document.documentElement.classList.add('video-is-open');
+        videoDialog.querySelector('.video-close').focus();
+      });
+    });
+    videoDialog.querySelector('.video-close').addEventListener('click', () => videoDialog.close());
+    videoDialog.addEventListener('click', (event) => {
+      const box = videoDialog.getBoundingClientRect();
+      if (event.target === videoDialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) videoDialog.close();
+    });
+    videoDialog.addEventListener('close', () => {
+      player.replaceChildren();
+      document.documentElement.classList.remove('video-is-open');
+      videoTrigger?.focus({ preventScroll: true });
+    });
+  }
 })();
