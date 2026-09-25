@@ -38,3 +38,9 @@ deliverables/
 
 # Local preview scaffolding, regenerated on demand
 preview-pending-work.html
+
+# Motion working files (render sources, masters, alternate cuts, score). Production
+# deploys from this PUBLIC repo, so only the hero loop the site uses is tracked.
+/assets/video/*
+!/assets/video/kalvano-hero-square.mp4
+!/assets/video/kalvano-hero-square-poster.jpg

@@ -125,6 +125,26 @@
     });
   });
 
+  // ---- hero reel: plays only while on screen; reduced motion shows the poster
+  // until the visitor chooses to play; the button pauses it at any time ----
+  const reel = document.querySelector('.hero-reel-video');
+  const reelToggle = document.querySelector('.hero-reel-toggle');
+  if (reel && reelToggle) {
+    let held = reduce;            // paused by preference or by the visitor
+    let onScreen = true;
+    const sync = () => {
+      const paused = held || !onScreen;
+      if (paused) reel.pause(); else reel.play().catch(() => {});
+      reelToggle.classList.toggle('is-paused', held);
+      reelToggle.setAttribute('aria-label', held ? 'Play animation' : 'Pause animation');
+    };
+    reelToggle.addEventListener('click', () => { held = !held; sync(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { onScreen = entries[0].isIntersecting; sync(); }).observe(reel);
+    }
+    sync();
+  }
+
   // Load one YouTube player only after a visitor chooses a video.
   const videoDialog = document.querySelector('.video-dialog');
   if (videoDialog && typeof videoDialog.showModal === 'function') {

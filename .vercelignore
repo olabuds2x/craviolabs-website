@@ -17,3 +17,8 @@
 # the three concept project pages. Omitting these 404'd every /work/ URL in
 # the sitemap and every "See the full concept" link on the homepage.
 !/work
+# assets/video holds render sources, 1080 masters, alternate cuts and the score.
+# The site uses only the hero loop and its poster.
+/assets/video/*
+!/assets/video/kalvano-hero-square.mp4
+!/assets/video/kalvano-hero-square-poster.jpg
