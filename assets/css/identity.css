@@ -381,9 +381,6 @@
 .launch-method .launch-section-head h2 > span { font-family:inherit; font-style:normal; font-weight:inherit; font-size:inherit; letter-spacing:inherit; color:#b4a1fb; }
 .faq-headline .ser,.fit-check h2 span { color:#b4a1fb; }
 
-/* Pricing: the recommended entry offer needs a button you can actually see. */
-.sprint-card .model-cta .btn { background:#fafafa; color:#0c1422; border:1px solid #fafafa; box-shadow:none; font-weight:600; }
-.sprint-card .model-cta .btn:hover { background:#dcdcdf; border-color:#dcdcdf; color:#000; }
 
 /* Closing CTA: white on lavender was ~2.5:1. Deep violet keeps the two-tone line at ~5.9:1. */
 .cta .cta-headline .ser { color:#2a1d63; }
@@ -393,3 +390,127 @@
 .proof-avatar { flex:none; width:40px; height:40px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 2px #ffffff8c; }
 .proof-who { min-width:0; min-height:61px; }  /* room for a two-line role, so every card's divider lines up */
 .proof-who strong,.proof-who span { display:block; }
+
+/* ---- Usage-led pass: one obvious next step, less to read at the decision point ---- */
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* One colour means "book": the nav button matches every other primary CTA. */
+.nav-cta { background:#ff6a1b; }
+.nav-cta:hover { background:#ff8848; }
+
+/* Pricing: the Sprint is the entry offer, so it carries the emphasis and the orange button.
+   The Engine is the next step and reads as secondary. */
+@media(min-width:921px) { .offer-grid { grid-template-columns:minmax(0,1.12fr) minmax(0,1fr); } }
+.model-card.sprint-card { border:2px solid #b6a0ff; background:#202c46; box-shadow:0 16px 55px #0002; padding:clamp(26px,3vw,42px); }
+.model-card.engine-card { border:1px solid #354255; background:#192739; box-shadow:none; padding:clamp(26px,3vw,42px); }
+.engine-card .model-cta .btn { background:transparent; border:1px solid #ffffff40; color:#f4f6fb; box-shadow:none; }
+.engine-card .model-cta .btn:hover { border-color:#fff; background:#ffffff0d; }
+.model-cta-note { margin-top:12px; text-align:center; font-size:13px; color:#aeb9c8; }
+
+/* The full scope sits behind a disclosure so the cards stay scannable. */
+.model-more { margin-top:18px; }
+.model-more summary { display:inline-flex; align-items:center; gap:8px; padding:6px 0; font-size:14px; font-weight:500; color:#c7b7ff; cursor:pointer; list-style:none; }
+.model-more summary::-webkit-details-marker { display:none; }
+.model-more summary::after { content:'+'; font-size:18px; line-height:1; }
+.model-more[open] summary::after { content:'\2212'; }
+.model-more summary:hover { color:#e0d6ff; }
+.model-more summary:focus-visible { outline:2px solid #c7b7ff; outline-offset:3px; border-radius:4px; }
+.model-more ul { list-style:none; margin:10px 0 0; padding:0; }
+.model-more li { position:relative; padding:6px 0 6px 18px; font-size:14px; line-height:1.55; color:#b9c4d3; }
+.model-more li::before { content:'·'; position:absolute; left:4px; color:#c7b7ff; }
+
+/* Comparison: the alternatives a buyer is already weighing, in the same terms. */
+.alt-compare { max-width:1120px; margin:64px auto 0; }
+.alt-compare-head { text-align:center; margin-bottom:32px; }
+.alt-compare-head .launch-kicker { margin-bottom:14px; }
+.alt-compare-head h3 { font-size:clamp(30px,3vw,40px); font-weight:550; letter-spacing:-.04em; line-height:1.12; }
+.alt-compare-head p { max-width:52ch; margin:14px auto 0; font-size:15px; line-height:1.7; color:#b4c0d0; }
+.alt-compare-grid { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.alt-compare-grid > li { display:flex; flex-direction:column; padding:24px; border:1px solid #2c3a4f; border-radius:18px; background:#121e2e; }
+.alt-compare-grid > li.is-kalvano { border:2px solid #b6a0ff; background:#202c46; }
+.alt-compare-tag { font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#9ca7b8; }
+.is-kalvano .alt-compare-tag { color:#c7b7ff; }
+.alt-compare-grid h4 { margin:12px 0 18px; font-size:19px; font-weight:550; line-height:1.3; letter-spacing:-.02em; color:#dfe5ee; }
+.is-kalvano h4 { color:#fff; }
+.alt-compare-grid dl { margin:0; }
+.alt-compare-grid dl > div { padding:10px 0; border-top:1px solid #ffffff14; }
+.alt-compare-grid dt { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#8793a5; }
+.alt-compare-grid dd { margin:4px 0 0; font-size:14px; line-height:1.5; color:#b9c4d3; }
+.is-kalvano dd { color:#f4f6fb; }
+@media(max-width:1000px) { .alt-compare-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:600px) {
+ .alt-compare { margin-top:48px; }
+ .alt-compare-head { text-align:left; margin-bottom:22px; }
+ .alt-compare-head h3 { font-size:30px; }
+ .alt-compare-head p { margin-left:0; font-size:14px; }
+ /* a swipeable row like the other phone carousels; Kalvano first, the next card peeks in */
+ .alt-compare-grid { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 0 14px; scrollbar-color:#b6a0ff #172435; }
+ .alt-compare-grid:focus-visible { outline:2px solid #c7b7ff; outline-offset:4px; }
+ .alt-compare-grid > li { flex:0 0 84%; scroll-snap-align:start; padding:20px; }
+ .alt-compare-grid > li.is-kalvano { order:-1; }
+ .alt-compare-grid h4 { font-size:18px; margin:10px 0 12px; }
+ /* the three criteria sit side by side so each option stays one short card */
+ .alt-compare-grid dl { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+ .alt-compare-grid dl > div { padding:10px 0 0; }
+ .alt-compare-grid dd { font-size:13px; }
+}
+
+/* Sprint timeline: four steps in a row; the illustration beside it repeated the cards and the work. */
+.offer-delivery .delivery-steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; }
+.offer-delivery .delivery-steps li { grid-template-columns:1fr; align-content:start; gap:14px; padding:22px 0 0; border-bottom:0; border-top:1px dashed #ffffff25; }
+.offer-delivery .delivery-steps li:first-child { padding-top:22px; }
+.offer-delivery .delivery-steps li:last-child { padding-bottom:0; }
+.offer-delivery .delivery-steps h4 { font-size:21px; }
+@media(max-width:920px) { .offer-delivery .delivery-steps { grid-template-columns:1fr 1fr; row-gap:32px; } }
+@media(max-width:600px) {
+ .offer-delivery .delivery-steps { grid-template-columns:1fr; row-gap:0; }
+ .offer-delivery .delivery-steps li { grid-template-columns:44px 1fr; gap:16px; padding:16px 0; border-top:0; border-bottom:1px dashed #ffffff25; }
+ .offer-delivery .delivery-steps li:first-child { padding-top:0; }
+ .offer-delivery .delivery-steps li:last-child { border-bottom:0; }
+ .offer-delivery .delivery-badge { width:40px; height:40px; border-radius:14px 10px 14px 10px; margin-top:2px; }
+ .offer-delivery .delivery-badge svg { width:20px; height:20px; }
+ .offer-delivery .delivery-steps h4 { font-size:19px; margin:2px 0 4px; }
+}
+
+/* FAQ: an action where the questions are. */
+.faq-aside { margin-top:22px; max-width:30ch; font-size:15px; line-height:1.65; color:#aeb9c8; }
+.faq-aside a { color:#f4f6fb; text-decoration:underline; text-decoration-color:#c7b7ff; text-underline-offset:3px; }
+.faq-aside a:hover { color:#c7b7ff; }
+
+/* Hero: calmer without new words. The CTA is the only filled shape, supporting text shares
+   one secondary colour, and the offer and audience lines read as one quiet block. */
+.launch-copy h1 .hero-problem { color:#9fabbc; }
+.launch-copy > p { color:#9fabbc; font-size:18px; line-height:1.6; max-width:46ch; }
+.launch-actions { margin-top:36px; }
+.hero-offer { margin-top:40px; padding:0; border:0; border-radius:0; background:none; gap:10px; font-size:14px; color:#dbe2ec; }
+.hero-offer:hover { background:none; }
+.hero-offer:hover .hero-offer-text { text-decoration:underline; text-decoration-color:#c3afff; text-underline-offset:4px; }
+.hero-offer-tag { padding:0; border-radius:0; background:none; color:#c3afff; font-size:14px; font-weight:600; }
+.launch-copy .launch-small { margin-top:6px; font-size:14px; color:#8793a5; }
+@media(max-width:600px) {
+ .launch-copy > p { font-size:16px; }
+ .hero-offer { display:block; margin-top:28px; font-size:13px; line-height:1.55; }
+ .hero-offer-tag { display:inline; margin-right:8px; font-size:13px; }
+ .hero-offer-arrow { display:inline-block; margin-left:6px; }
+ .launch-copy .launch-small { font-size:13px; }
+}
+
+/* Comparison: Kalvano takes the page's bright card treatment (the same lavender as the first
+   quote and Method cards); the alternatives stay dark, so the answer pops against the options. */
+.alt-compare-grid > li.is-kalvano { border:0; background:#c4b1f4; color:#211b35; box-shadow:0 18px 50px #c4b1f41f; }
+.is-kalvano .alt-compare-tag { align-self:flex-start; padding:5px 10px; border-radius:100px; background:#211b35; color:#e6ddff; }
+.is-kalvano h4 { color:#211b35; font-weight:600; }
+.is-kalvano dl > div { border-top-color:#211b3526; }
+.is-kalvano dt { color:#4a3d72; }
+.is-kalvano dd { color:#211b35; font-weight:600; }
+.alt-compare-grid > li:not(.is-kalvano) h4 { color:#c3ccd8; }
+.alt-compare-grid > li:not(.is-kalvano) dd { color:#9ca7b8; }
+.is-kalvano .alt-compare-tag { margin:-5px 0; }   /* the pill adds no height, so rows line up across cards */
+/* phones: one row per criterion, label left and answer right, instead of three cramped columns */
+@media(max-width:600px) {
+ .alt-compare-grid dl { display:block; }
+ .alt-compare-grid dl > div { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0; }
+ .alt-compare-grid dt { flex:none; }
+ .alt-compare-grid dd { margin:0; text-align:right; }
+}

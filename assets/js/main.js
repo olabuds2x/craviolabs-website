@@ -85,13 +85,15 @@
     }, { passive: true });
   }
 
-  // conversion events (Vercel Web Analytics): label each contact click by section
-  document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+  // conversion events (Vercel Web Analytics): label each contact click by
+  // section and by method, so booking-link and email clicks stay one funnel
+  document.querySelectorAll('a[href^="mailto:"], a[href^="https://calendly.com/"]').forEach((a) => {
     a.addEventListener('click', () => {
       if (typeof window.va !== 'function') return;
-      const region = a.closest('section, header, nav, footer');
+      const region = a.closest('section[id], header, nav, footer');
       const location = region ? (region.id || region.tagName.toLowerCase()) : 'page';
-      window.va('event', { name: 'contact_click', data: { location } });
+      const method = a.href.startsWith('mailto:') ? 'email' : 'calendly';
+      window.va('event', { name: 'contact_click', data: { location, method } });
     });
   });
 
@@ -130,6 +132,13 @@
   const reel = document.querySelector('.hero-reel-video');
   const reelToggle = document.querySelector('.hero-reel-toggle');
   if (reel && reelToggle) {
+    // open on the finished ads (data-start matches the poster frame), then loop
+    // round through research and angles
+    const start = parseFloat(reel.dataset.start) || 0;
+    if (start) {
+      const seek = () => { reel.currentTime = start; };
+      if (reel.readyState >= 1) seek(); else reel.addEventListener('loadedmetadata', seek, { once: true });
+    }
     let held = reduce;            // paused by preference or by the visitor
     let onScreen = true;
     const sync = () => {
