@@ -514,3 +514,41 @@
  .alt-compare-grid dt { flex:none; }
  .alt-compare-grid dd { margin:0; text-align:right; }
 }
+
+/* Clear choices: relevant proof, visible terms and optional comparison details. */
+.client-proof-grid { grid-template-columns:repeat(2,minmax(0,1fr)); max-width:1000px; }
+.client-proof figure:first-child { background:#a7d4f0; color:#142b3c; }
+.client-proof figure:last-child { background:#f2b5c8; color:#391d2a; }
+.decision-quote { margin:24px 0; padding:24px; border-radius:16px; background:#c4b1f4; color:#211b35; }
+.decision-quote-label { display:block; margin-bottom:14px; font-size:11px; letter-spacing:.04em; }
+.decision-quote blockquote { margin:0; font-size:18px; line-height:1.55; }
+.decision-quote blockquote strong { font-weight:650; }
+.decision-quote figcaption { display:flex; align-items:center; gap:12px; margin-top:20px; padding-top:16px; border-top:1px solid #211b3520; }
+.decision-quote .proof-who { min-height:0; }
+.decision-quote .proof-who strong { font-size:14px; margin-bottom:3px; }
+.decision-quote .proof-who span { font-size:11px; line-height:1.5; }
+.work-quote { max-width:1200px; margin:0 auto 32px; display:grid; grid-template-columns:minmax(0,1fr) 240px; column-gap:35px; }
+.work-quote .decision-quote-label { grid-column:1/-1; }
+.work-quote figcaption { margin:0; padding:0 0 0 24px; border:0; border-left:1px solid #211b3520; }
+.engine-quote { background:#ffce78; color:#32240d; margin-top:24px; }
+.engine-quote blockquote { font-size:17px; }
+.alt-compare { padding:0; border-block:1px solid #ffffff25; }
+.alt-compare > summary { display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; position:relative; padding:24px 40px 24px 0; list-style:none; color:#f4f6fb; font-size:21px; font-weight:550; cursor:pointer; }
+.alt-compare > summary::-webkit-details-marker { display:none; }
+.alt-compare > summary > span { color:#aeb9c8; font-size:14px; font-weight:400; }
+.alt-compare > summary::after { content:'+'; position:absolute; right:4px; font-size:26px; color:#c7b7ff; }
+.alt-compare[open] > summary::after { content:'−'; }
+.alt-compare > summary:focus-visible { outline:2px solid #c7b7ff; outline-offset:5px; }
+.alt-compare-head { margin-top:20px; }.alt-compare-grid { padding-bottom:28px; }
+@media(max-width:600px) {
+ .work-quote { display:block; padding:24px; }
+ .work-quote figcaption { margin-top:18px; padding:16px 0 0; border-left:0; border-top:1px solid #211b3520; }
+ .decision-quote blockquote { font-size:17px; }
+ .engine-quote { padding:20px; }
+ .alt-compare > summary { font-size:20px; gap:8px; }
+ .alt-compare > summary > span { font-size:13px; line-height:1.5; }
+ .model-more summary { min-height:44px; }
+}
+.offer > .engine-quote { max-width:var(--maxw); margin:24px auto 0; display:grid; grid-template-columns:minmax(0,1fr) 240px; gap:24px; align-items:center; }
+.offer > .engine-quote figcaption { margin:0; padding:0 0 0 24px; border:0; border-left:1px solid #32240d26; }
+@media(max-width:600px) { .offer > .engine-quote { display:block; }.offer > .engine-quote figcaption { margin-top:18px; padding:16px 0 0; border-left:0; border-top:1px solid #32240d26; } }
