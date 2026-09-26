@@ -166,6 +166,10 @@
     let videoTrigger;
     document.querySelectorAll('[data-video]').forEach((link) => {
       link.addEventListener('click', (event) => {
+        // counted before any early return, so modifier-clicks out to YouTube still register
+        if (typeof window.va === 'function') {
+          window.va('event', { name: 'video_play', data: { video: link.dataset.videoTitle } });
+        }
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const id = link.dataset.video;
         if (!Object.prototype.hasOwnProperty.call(scripts, id)) return;
