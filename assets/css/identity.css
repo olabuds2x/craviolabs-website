@@ -774,3 +774,17 @@ main[tabindex="-1"]:focus,main [tabindex="-1"]:focus { outline:none; }
 :root { --cream:#fff6e5; }
 .hero-x h1 { color:var(--cream); font-weight:800; letter-spacing:-.035em; }
 .launch-section-head h2,.cta .cta-headline,.research-heading h2,.study-heading h1 { color:var(--cream); font-weight:700; }
+
+/* ========== Hero refinements (2026-11-07) ========== */
+/* set-up line reads as a lead-in, not a second headline */
+.hero-x h1 .hero-problem { margin-bottom:.3em; font-size:clamp(20px,2vw,28px); }
+/* two-tone headline: orange words lead the eye to the orange button; no second accent block */
+.hero-x h1 .hero-emphasis { display:inline; margin:0; padding:0; border-radius:0; background:none; color:var(--accent); -webkit-text-fill-color:currentColor; transform:none; }
+/* portrait tiles cropped to the person, not the pillarboxed YouTube frame */
+.hx-proof .proof-video-thumb { aspect-ratio:4/5; }
+.hx-lead,.hx-micro { text-wrap:pretty; }
+@media(min-width:921px) {
+ /* even halves: the videos start on the page's centre line */
+ .hx-row { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+ .hx-lead { max-width:30em; }
+}
