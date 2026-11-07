@@ -636,3 +636,136 @@ button.hero-work-link:focus-visible,.read-link:focus-visible { outline:2px solid
 @media(min-width:601px) { #method .launch-kicker::after,.collaborator-heading .launch-kicker::after,.alt-compare-head .launch-kicker::after,.delivery-heading .launch-kicker::after { content:''; display:inline-block; width:20px; height:2px; margin-left:10px; border-radius:2px; background:#b4a1fb; vertical-align:middle; position:relative; top:-1px; } }
 .study-heading .launch-kicker::before,.study-heading .launch-kicker::after { background:currentColor; }
 @media(max-width:600px) { .launch-kicker { font-size:16px; } }
+
+/* ========== UX audit fixes, 2026-11-06 ========== */
+/* focus: never hidden under the fixed nav; no ring round whole sections */
+html { scroll-padding-top:96px; }
+main[tabindex="-1"]:focus,main [tabindex="-1"]:focus { outline:none; }
+
+/* text floors: 13px for labels and disclosures, 16px for reading text */
+.board-disclosure,.hero-visual .board-disclosure,.launch-section-head small,.launch-section-head > p small,.study-service-line span,.study-angle > span,.study-step,.work-cap .wc-kicker,.study-testing-note,.study-disclosure,.study-facts dt,.study-facts dd,.study-cover-label,.study-cover-link,.project-thinking dt,.project-count,.project-index,.project-art-tag,.proof-who span,.proof-video .proof-who span,.decision-quote .proof-who span,.collaborator-person small,.collaborator-caption > span,.model-type,.model-when,.delivery-when,.alt-compare-tag,.alt-compare dt,.decision-quote-label,.cta-note,.cta .cta-note,.mobile-rail-label,.mobile-rail-label span,.nav-cta,.footer-col h2 { font-size:13px; }
+.project-thinking dt,.model-type,.model-when { letter-spacing:.04em; }
+.method-compact .method-number { font-size:13px; }
+.launch-section-head > p,.method-compact .launch-section-head > p,.cost-list p,.method-compact .method-steps p,.project-thinking dd,.fit-columns li,.fit-lead,.model-desc,.model-feats li,.model-more li,.delivery-steps p,.faq-list p,.alt-compare-head p { font-size:16px; }
+
+/* one alignment per section on phones; no decoration cropped by the closing panel */
+@media(max-width:600px) {
+ .selected-work .launch-section-head { text-align:left; }
+ #work .launch-kicker::after,.offer .wrap .launch-kicker::after { content:none; }
+ .offer > .wrap { text-align:left; }
+ .offer > .wrap .launch-kicker { display:block; text-align:left; }
+ .cta-art { display:none; }
+}
+
+/* hero offer: arrow stays with the text and the price never sits alone */
+.hero-offer { display:block; min-height:44px; text-wrap:balance; }
+.hero-offer-tag { display:inline; margin-right:8px; }
+.hero-offer-arrow { display:inline-block; margin-left:6px; }
+
+/* tap targets of at least 44px, visible size unchanged where a control is small on purpose */
+.hero-reel-toggle::after,.nav-toggle::after { content:''; position:absolute; inset:-8px; }
+.nav-toggle { position:relative; }
+.nav-cta { display:inline-flex; align-items:center; min-height:44px; }
+.brand { display:inline-flex; align-items:center; min-height:44px; }
+.project-link,.model-more summary { min-height:44px; }
+.study-back { align-items:center; min-height:44px; }
+.study-cover-link { min-height:44px; }
+.footer-col ul { gap:0; }
+.footer-col a { display:inline-block; padding-block:10px; }
+.footer-col h2 { margin-bottom:.6rem; }
+
+/* ========== Visual pass: one card surface; the ads supply the colour, orange marks actions ========== */
+.client-proof figure,.client-proof figure:first-child,.client-proof figure:last-child,.client-proof figure:nth-child(2),.decision-quote,.engine-quote,
+.method-compact .method-steps article,.method-compact .method-steps article:nth-child(2),.method-compact .method-steps article:nth-child(3) { background:#152131; color:#e8ecf2; border:1px solid #ffffff14; border-radius:18px; }
+.decision-quote figcaption,.work-quote figcaption { border-color:#ffffff1f; }
+.decision-quote-label { color:#aeb9c8; }
+.proof-avatar { box-shadow:none; }
+.client-proof .proof-who { min-height:0; }
+.client-proof { padding-top:72px; }
+.method-compact .method-number { border-color:#ffffff26; color:#c7b7ff; }
+.method-compact .method-steps p { color:#b8c2d0; opacity:1; }
+.video-play { background:#fff; color:#091321; }
+.cta-art { display:none; }
+.cta.on-paper { background-color:#152131; background-image:none; border:1px solid #ffffff14; color:#f4f6fb; --fg:#f4f6fb; --fg-dim:#c1c8d4; --fg-mute:#aeb9c8; --rule:#ffffff1f; }
+.cta .cta-headline,.cta .cta-sub,.cta .cta-email,.cta .cta-email a,.cta .read-link { color:#f4f6fb; }
+.cta .cta-headline .ser { color:#c7b7ff; }
+.cta .cta-note { color:#aeb9c8; }
+.offer-fit { max-width:62ch; margin:28px auto 0; text-align:center; font-size:16px; line-height:1.6; color:#b8c2d0; }
+.offer-fit a { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+
+@media(max-width:600px) {
+ /* quotes read straight down instead of hiding in a rail */
+ .client-proof > .mobile-rail-label { display:none; }
+ .client-proof-grid { display:grid; grid-template-columns:1fr; gap:12px; overflow:visible; padding-bottom:0; }
+ .client-proof figure,.client-proof figure:first-child,.client-proof figure:last-child { flex:none; }
+ .client-proof { padding-top:56px; }
+ /* the work: bigger ads, side by side */
+ .project-preview-art { min-height:clamp(250px,74vw,330px); }
+ .preview-primary { width:47%; left:2.5%; top:22px; }
+ .preview-secondary { width:45%; right:2.5%; bottom:22px; }
+ .cta.on-paper { margin-inline:max(20px,5vw); }
+ .offer-fit { text-align:left; }
+}
+
+/* ========== Hero: big message, one action, real people, then the work ========== */
+.hero-x { padding:150px var(--gutter) 0; }
+.hx-inner { max-width:var(--maxw); margin:0 auto; }
+.hero-x h1 { margin:0; font-size:clamp(64px,7.6vw,112px); line-height:1.04; letter-spacing:-.045em; font-weight:600; color:#fff; }
+.hero-x h1 .hero-problem { display:block; margin-bottom:.45em; font-size:clamp(24px,2.4vw,34px); line-height:1.2; letter-spacing:-.025em; font-weight:500; color:#cdd5e0; }
+.hero-x h1 .hero-emphasis { display:inline-block; margin:.06em 0 0 -.02em; padding:0 .14em .07em; border-radius:.07em; background:#c4b1f4; color:#0b1424; -webkit-text-fill-color:currentColor; transform:rotate(-1deg); transform-origin:left center; }
+.hx-row { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:72px; align-items:start; margin-top:48px; }
+.hx-lead { max-width:34em; font-size:20px; line-height:1.5; color:#c1c8d4; }
+.hx-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; margin-top:26px; }
+.hx-call { display:inline-flex; align-items:center; min-height:48px; color:#fff; font-size:15px; text-decoration:underline; text-underline-offset:4px; text-decoration-color:#ffffff66; }
+.hx-call:hover { text-decoration-color:#fff; }
+.hx-micro { margin-top:14px; font-size:14px; line-height:1.5; color:#9ca7b8; }
+.hx-proof.proof-videos { display:block; margin:0; padding:0; border:0; background:none; }
+.hx-proof .hx-proof-label { margin:0 0 14px; font-size:14px; font-weight:600; color:#e8ecf2; }
+.hx-proof .proof-video-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:0; padding:0; list-style:none; }
+.hx-proof .proof-video { display:block; padding:0; border:0; background:none; color:#fff; text-decoration:none; }
+.hx-proof .proof-video-thumb { display:block; position:relative; width:100%; height:auto; aspect-ratio:1; border-radius:12px; overflow:hidden; }
+.hx-proof .proof-video-thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.hx-proof .proof-who { display:block; min-height:0; margin-top:8px; }
+.hx-proof .proof-who strong { font-size:14px; }
+.hx-work { margin:60px 0 0; }
+.hx-ads { display:flex; flex-wrap:wrap; gap:12px; }
+.hx-ads img { display:block; min-width:0; height:auto; border-radius:12px; }
+.hx-ads img:nth-child(1) { flex:1 1 0; aspect-ratio:1; }
+.hx-ads img:nth-child(2) { flex:.75 1 0; aspect-ratio:3/4; }
+.hx-ads img:nth-child(3) { flex:1.5 1 0; aspect-ratio:3/2; }
+.hx-work figcaption { margin-top:12px; font-size:13px; color:#9ca7b8; }
+
+/* orange belongs to the main action */
+.nav-cta { background:transparent; border:1px solid #ffffff38; color:#fff!important; }
+.nav-cta:hover { background:#ffffff14; }
+
+/* real people stay visually distinct from the concept work, which sits in cards */
+.client-proof { padding-top:72px; }
+.client-proof-grid { max-width:var(--maxw); gap:48px; }
+.client-proof figure,.client-proof figure:first-child,.client-proof figure:last-child,.client-proof figure:nth-child(2) { padding:0; background:none; border:0; border-radius:0; color:#fff; }
+.client-proof blockquote,.client-proof blockquote p { font-size:clamp(21px,2vw,27px); line-height:1.3; letter-spacing:-.02em; }
+.proof-note { max-width:var(--maxw); margin:28px auto 0; text-align:left; }
+
+.method-film.hero-visual { width:100%; max-width:720px; margin:0 auto 76px; padding:0; }
+.cta .cta-headline { font-size:clamp(34px,4.6vw,64px); max-width:20ch; }
+
+@media(max-width:920px) {
+ .hx-row { grid-template-columns:1fr; gap:36px; }
+ .hx-proof.proof-videos { max-width:520px; }
+}
+@media(max-width:600px) {
+ .hero-x { padding-top:104px; }
+ .hero-x h1 { font-size:clamp(34px,10.4vw,60px); }
+ .hero-x h1 .hero-problem { font-size:21px; margin-bottom:12px; }
+ .hx-row { gap:28px; margin-top:22px; }
+ .hx-lead { font-size:17px; }
+ .hx-actions { margin-top:20px; gap:4px; }
+ .hx-actions .btn { width:100%; justify-content:center; padding-inline:14px; font-size:15px; white-space:normal; text-align:center; }
+ .hx-call { min-height:44px; }
+ .hx-micro { margin-top:4px; }
+ .hx-work { margin-top:36px; }
+ .hx-ads img:nth-child(3) { flex:1 1 100%; }
+ .client-proof { padding-top:52px; }
+ .client-proof-grid { gap:28px; }
+ .method-film.hero-visual { margin-bottom:60px; }
+}

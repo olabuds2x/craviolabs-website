@@ -43,4 +43,5 @@ preview-pending-work.html
 # deploys from this PUBLIC repo, so only the hero loop the site uses is tracked.
 /assets/video/*
 !/assets/video/kalvano-hero-square.mp4
+!/assets/video/kalvano-hero-square-640.mp4
 !/assets/video/kalvano-hero-square-poster.jpg

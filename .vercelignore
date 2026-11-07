@@ -21,4 +21,5 @@
 # The site uses only the hero loop and its poster.
 /assets/video/*
 !/assets/video/kalvano-hero-square.mp4
+!/assets/video/kalvano-hero-square-640.mp4
 !/assets/video/kalvano-hero-square-poster.jpg

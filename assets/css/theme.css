@@ -93,7 +93,7 @@ nav.scrolled { background:rgba(17,17,18,.95); }
 .cta { background:radial-gradient(ellipse at 50% 100%,#242427,#050505 70%); border-bottom:1px solid var(--rule); }
 .cta-headline { font-size:clamp(40px,6vw,80px); max-width:20ch; }
 .cta-sub { font-size:18px; }.cta-actions .btn { font-size:15px; padding:16px 25px; }.cta-note { font-size:14px; }
-footer { background:#000; }.footer-col h5 { font-size:11px; letter-spacing:.08em; }.footer-tagline { font-size:14px; }
+footer { background:#000; }.footer-col h2 { font-size:11px; letter-spacing:.08em; }.footer-tagline { font-size:14px; }
 .proj-head { padding-top:150px; }.wproj-title { font-size:clamp(36px,4.2vw,58px); font-weight:650; line-height:1.08; letter-spacing:-.045em; }
 .wproj-bar .wproj-num { font-weight:600; }.wproj-meta,.wproj-foot { padding:26px; border:1px solid var(--rule); border-radius:20px; background:#0a0a0b; }
 a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid #e5e5e9; outline-offset:5px; }

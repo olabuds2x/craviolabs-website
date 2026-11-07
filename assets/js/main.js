@@ -123,7 +123,10 @@
       if (!target) return;
       ev.preventDefault();
       const y = target.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+      // move focus too, so the next Tab continues from the section, not the link
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     });
   });
 
@@ -140,7 +143,7 @@
       if (reel.readyState >= 1) seek(); else reel.addEventListener('loadedmetadata', seek, { once: true });
     }
     let held = reduce;            // paused by preference or by the visitor
-    let onScreen = true;
+    let onScreen = !('IntersectionObserver' in window);
     const sync = () => {
       const paused = held || !onScreen;
       if (paused) reel.pause(); else reel.play().catch(() => {});
