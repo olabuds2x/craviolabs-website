@@ -168,7 +168,8 @@
       link.addEventListener('click', (event) => {
         // counted before any early return, so modifier-clicks out to YouTube still register
         if (typeof window.va === 'function') {
-          window.va('event', { name: 'video_play', data: { video: link.dataset.videoTitle } });
+          const placement = link.closest('.proof-videos') ? 'hero_strip' : 'full_section';
+          window.va('event', { name: 'video_play', data: { video: link.dataset.videoTitle, placement } });
         }
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const id = link.dataset.video;
@@ -200,6 +201,58 @@
       player.replaceChildren();
       document.documentElement.classList.remove('video-is-open');
       videoTrigger?.focus({ preventScroll: true });
+    });
+  }
+
+  // Creative Read request form, opened from the hero and the closing section.
+  const readDialog = document.querySelector('.read-dialog');
+  if (readDialog && typeof readDialog.showModal === 'function') {
+    const readForm = readDialog.querySelector('.read-form');
+    const readStatus = readDialog.querySelector('.read-status');
+    const readSubmit = readForm.querySelector('[type="submit"]');
+    let readTrigger;
+    let readLocation = 'page';
+    document.querySelectorAll('[data-read-open]').forEach((button) => {
+      button.addEventListener('click', () => {
+        readTrigger = button;
+        const region = button.closest('section[id], header');
+        readLocation = region ? (region.id || region.tagName.toLowerCase()) : 'page';
+        if (typeof window.va === 'function') window.va('event', { name: 'creative_read_open', data: { location: readLocation } });
+        readDialog.showModal();
+        document.documentElement.classList.add('video-is-open');
+      });
+    });
+    readDialog.querySelector('.video-close').addEventListener('click', () => readDialog.close());
+    readDialog.addEventListener('click', (event) => {
+      const box = readDialog.getBoundingClientRect();
+      if (event.target === readDialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) readDialog.close();
+    });
+    readDialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('video-is-open');
+      readTrigger?.focus({ preventScroll: true });
+    });
+    readForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      readSubmit.disabled = true;
+      readStatus.textContent = '';
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/hello@kalvano.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(readForm)))
+        });
+        const result = await response.json();
+        if (!response.ok || String(result.success) !== 'true') throw new Error('not delivered');
+        if (typeof window.va === 'function') window.va('event', { name: 'creative_read_submit', data: { location: readLocation } });
+        readDialog.querySelector('.read-body').hidden = true;
+        const done = readDialog.querySelector('.read-done');
+        done.hidden = false;
+        done.focus();
+      } catch (error) {
+        readStatus.innerHTML = 'That didn’t send. Please email <a href="mailto:hello@kalvano.com?subject=Creative%20Read%20request">hello@kalvano.com</a> with your brand URL.';
+      } finally {
+        readSubmit.disabled = false;
+      }
     });
   }
 })();
